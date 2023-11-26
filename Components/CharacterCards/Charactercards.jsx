@@ -101,8 +101,6 @@ const Charactercards = () => {
     fetchData(); // Call the async function
   }, []); // Empty dependency array to run the effect only once
 
-
-
   // const handleFilterBtnClick = (items) => {
   //   if (selectedFilters === null) {
   //     setselectedFilters(items);
@@ -156,7 +154,6 @@ const Charactercards = () => {
   //   }
   // };
 
-
   // const handleFilterBtnClickLoc = (items) => {
   //   if (selectedLocation === null) {
   //     setselectedLocation(items);
@@ -178,7 +175,7 @@ const Charactercards = () => {
   //       );
   //       setCharactersFiltered(temp);
   //     } else {
-  //       let temp = characters.filter( 
+  //       let temp = characters.filter(
   //         (item) =>
   //           item.location.name.includes(selectedLocation) &&
   //           item.status.includes(selectedFilters)
@@ -201,7 +198,6 @@ const Charactercards = () => {
   //   }
   // };
 
-
   // const handleFilterBtnClickGender = (items) => {
   //   if (selectedGender === null) {
   //     setselectedGender(items);
@@ -222,7 +218,7 @@ const Charactercards = () => {
   //       );
   //       setCharactersFiltered(temp);
   //     } else if (selectedFilters !== null && selectedLocation!==null){
-  //       let temp = characters.filter( 
+  //       let temp = characters.filter(
   //         (item) =>
   //           item.location.name.includes(selectedLocation) &&
   //           item.status.includes(selectedFilters) && item.gender.includes(selectedGender)
@@ -235,13 +231,10 @@ const Charactercards = () => {
   //   }
   // };
 
-
-
-
-
   const [filters1, setFilters1] = useState({
     status: "",
     location: "",
+    gender: "",
   });
 
   const handleFilterChangedata = (field, value) => {
@@ -255,14 +248,13 @@ const Charactercards = () => {
     const filteredItems = characters.filter((item) => {
       return (
         (!filters1.status || item.status === filters1.status) &&
-        (!filters1.location || item.location.name  === filters1.location)
+        (!filters1.location || item.location.name === filters1.location)&&
+        (!filters1.gender || item.gender === filters1.gender)
       );
     });
 
     setCharactersFiltered(filteredItems);
   }, [filters1, characters]); // Add dependencies to avoid infinite re-renders
-
-
 
   return (
     <div className={Style.container1}>
@@ -287,7 +279,6 @@ const Charactercards = () => {
       <div className={Style.filters}>
         <div className={Style.filterHeading}>Filters :🔦</div>
         <div className={Style.filterBtns}>
-
           <div className={Style.dropdown}>
             <button
               name="Status"
@@ -303,7 +294,7 @@ const Charactercards = () => {
                     type="checkbox"
                     value={items}
                     className={Style.category}
-                    onClick={() => handleFilterChangedata("status",items)}
+                    onClick={() => handleFilterChangedata("status", items)}
                   >
                     {items}
                   </div>
@@ -327,7 +318,7 @@ const Charactercards = () => {
                     type="checkbox"
                     value={items}
                     className={Style.category}
-                    onClick={() => handleFilterChangedata("location",items)}
+                    onClick={() => handleFilterChangedata("location", items)}
                   >
                     {items}
                   </div>
@@ -335,8 +326,8 @@ const Charactercards = () => {
               </div>
             </div>
           </div>
-          
-          {/* <div className={Style.dropdown}>
+
+          <div className={Style.dropdown}>
             <button
               name="Gender"
               className={Style.filterbtn}
@@ -351,22 +342,21 @@ const Charactercards = () => {
                     type="checkbox"
                     value={items}
                     className={Style.category}
-                    onClick={() => handleFilterBtnClickGender(items)}
+                    onClick={() => handleFilterChangedata("gender", items)}
                   >
                     {items}
                   </div>
                 ))}
               </div>
             </div>
-          </div> */}
+          </div>
 
           {/* <button className={Style.filterbtn} onClick={getLocations}>
             location
           </button> */}
-          
-          
+
           {/* <button className={Style.filterbtn}>episode</button> */}
-          
+
           <button className={Style.filterbtn} onClick={getGenders}>
             episode
           </button>
