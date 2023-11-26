@@ -235,6 +235,8 @@ const Charactercards = () => {
     status: "",
     location: "",
     gender: "",
+    species: "",
+    type: "",
   });
 
   const handleFilterChangedata = (field, value) => {
@@ -248,8 +250,10 @@ const Charactercards = () => {
     const filteredItems = characters.filter((item) => {
       return (
         (!filters1.status || item.status === filters1.status) &&
-        (!filters1.location || item.location.name === filters1.location)&&
-        (!filters1.gender || item.gender === filters1.gender)
+        (!filters1.location || item.location.name === filters1.location) &&
+        (!filters1.gender || item.gender === filters1.gender) &&
+        (!filters1.species || item.species === filters1.species) &&
+        (!filters1.type || item.type === filters1.type)
       );
     });
 
@@ -285,7 +289,7 @@ const Charactercards = () => {
               className={Style.filterbtn}
               onClick={getStatus}
             >
-              Status - {selectedFilters}
+              Status - {filters1.status}
             </button>
             <div className={Style.dropdowncontent}>
               <div className={Style.categoryArea}>
@@ -302,14 +306,13 @@ const Charactercards = () => {
               </div>
             </div>
           </div>
-
           <div className={Style.dropdown}>
             <button
               name="Location"
               className={Style.filterbtn}
               onClick={getLocations}
             >
-              Location - {selectedLocation}
+              Location - {filters1.location}
             </button>
             <div className={Style.dropdowncontent}>
               <div className={Style.categoryArea}>
@@ -326,14 +329,13 @@ const Charactercards = () => {
               </div>
             </div>
           </div>
-
           <div className={Style.dropdown}>
             <button
               name="Gender"
               className={Style.filterbtn}
               onClick={getGenders}
             >
-              Gender - {selectedGender}
+              Gender - {filters1.gender}
             </button>
             <div className={Style.dropdowncontent}>
               <div className={Style.categoryArea}>
@@ -350,21 +352,51 @@ const Charactercards = () => {
               </div>
             </div>
           </div>
-
-          {/* <button className={Style.filterbtn} onClick={getLocations}>
-            location
-          </button> */}
-
-          {/* <button className={Style.filterbtn}>episode</button> */}
+          <div className={Style.dropdown}>
+            <button
+              name="species"
+              className={Style.filterbtn}
+              onClick={getSpecies}
+            >
+              species - {filters1.species}
+            </button>
+            <div className={Style.dropdowncontent}>
+              <div className={Style.categoryArea}>
+                {species.map((items) => (
+                  <div
+                    type="checkbox"
+                    value={items}
+                    className={Style.category}
+                    onClick={() => handleFilterChangedata("species", items)}
+                  >
+                    {items}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className={Style.dropdown}>
+            <button name="Type" className={Style.filterbtn} onClick={getType}>
+              Type - {filters1.type}
+            </button>
+            <div className={Style.dropdowncontent}>
+              <div className={Style.categoryArea}>
+                {type.map((items) => (
+                  <div
+                    type="checkbox"
+                    value={items}
+                    className={Style.category}
+                    onClick={() => handleFilterChangedata("type", items)}
+                  >
+                    {items}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
 
           <button className={Style.filterbtn} onClick={getGenders}>
             episode
-          </button>
-          <button className={Style.filterbtn} onClick={getSpecies}>
-            species
-          </button>
-          <button className={Style.filterbtn} onClick={getType}>
-            type
           </button>
         </div>
       </div>
