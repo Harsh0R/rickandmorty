@@ -13,6 +13,8 @@ import {
   getAllGender,
   getAllSpecies,
   getAllType,
+  getAllEpisodeName,
+  getAllDataFromApi,
 } from "@/Components/demo/page";
 import FilterSection from "../FilterSection/FilterSection";
 
@@ -29,9 +31,11 @@ const Charactercards = () => {
   const [species, setSpecies] = useState([]);
   const [type, setType] = useState([]);
 
-  const [selectedFilters, setselectedFilters] = useState(null);
-  const [selectedLocation, setselectedLocation] = useState(null);
-  const [selectedGender, setselectedGender] = useState(null);
+  const [EpisodeNameId, setEpisodeNameId] = useState({
+    id: "",
+    name: "",
+  });
+  const [allEpisodeName, setAllEpisodeName] = useState([]);
 
   const [activeFilter, setActiveFilter] = useState(false);
 
@@ -60,6 +64,10 @@ const Charactercards = () => {
     setType(st);
     console.log("type = " + type);
   }
+  async function getEpisodeName() {
+    const ep = await getAllEpisodeName();
+    setAllEpisodeName(ep);
+  }
 
   // Fetching data from API
   useEffect(() => {
@@ -71,15 +79,15 @@ const Charactercards = () => {
         // );
         let currentPage = 1;
         let allCharacters = [];
-        while (true) {
+        while (currentPage < 43) {
           const response = await axios.get(
             `https://rickandmortyapi.com/api/character/?page=${currentPage}`
           );
           const data = response.data;
           // If there are no more pages, break out of the loop
-          if (data.info.next === null) {
-            break;
-          }
+          // if (data.info.next === null) {
+          //   break;
+          // }
           // Concatenate characters from the current page to the existing array
           allCharacters = allCharacters.concat(data.results);
           // Move to the next page
@@ -91,7 +99,7 @@ const Charactercards = () => {
         // setCharacters(data1);
 
         setCharacters(allCharacters);
-        setCharactersFiltered(allCharacters);
+        // setCharactersFiltered(allCharacters);
         console.log("Char =" + characters + "typr = " + typeof characters);
       } catch (error) {
         console.log(error);
@@ -101,135 +109,13 @@ const Charactercards = () => {
     fetchData(); // Call the async function
   }, []); // Empty dependency array to run the effect only once
 
-  // const handleFilterBtnClick = (items) => {
-  //   if (selectedFilters === null) {
-  //     setselectedFilters(items);
-  //   } else if (selectedFilters !== items) {
-  //     setselectedFilters(items);
-  //   } else {
-  //     setselectedFilters(null);
-  //   }
-  //   console.log("Selected in filter = " + selectedFilters);
-  // };
-  // // const handleFilterBtnClick = (items) => {
-  // //   if (selectedFilters.includes(items)) {
-  // //     let filter = selectedFilters.filter((el) => el !== items);
-  // //     setselectedFilters(filter);
-  // //     console.log("Selected in filter = "+selectedFilters);
-  // //   } else {
-  // //     setselectedFilters([...selectedFilters, items]);
-  // //   }
-  // // };
-  // useEffect(() => {
-  //   filterItems();
-  // }, [selectedFilters]);
-  // const filterItems = () => {
-  //   if (selectedFilters !== null) {
-  //     console.log("Called" + selectedFilters);
-  //     if (selectedLocation === null) {
-  //       let temp = characters.filter((item) =>
-  //         item.status.includes(selectedFilters)
-  //       );
-  //       setCharactersFiltered(temp);
-  //     } else {
-  //       let temp = characters.filter(
-  //         (item) =>
-  //           item.status.includes(selectedFilters) &&
-  //           item.location.name.includes(selectedLocation)
-  //       );
-  //       setCharactersFiltered(temp);
-  //     }
-  //     // console.log("Category items = " + temp);
-
-  //     // let temp1 = characters.filter((items) => {
-  //     //   return selectedCategory === ""
-  //     //     ? items
-  //     //     : items.status.includes(selectedCategory);
-  //     // });
-  //     // console.log("Category items 1  = " + temp1);
-  //     // return temp;
-  //     // console.log("Category items charachter = " + charactersFiltered);
-  //   } else {
-  //     setCharactersFiltered(characters);
-  //   }
-  // };
-
-  // const handleFilterBtnClickLoc = (items) => {
-  //   if (selectedLocation === null) {
-  //     setselectedLocation(items);
-  //   } else if (selectedLocation !== items) {
-  //     setselectedLocation(items);
-  //   } else {
-  //     setselectedLocation(null);
-  //   }
-  //   console.log("Selected in filter = " + selectedLocation);
-  // };
-  // useEffect(() => {
-  //   filterItemsLoc();
-  // }, [selectedLocation]);
-  // const filterItemsLoc = () => {
-  //   if (selectedLocation !== null) {
-  //     if (selectedFilters === null) {
-  //       let temp = characters.filter((item) =>
-  //         item.location.name.includes(selectedLocation)
-  //       );
-  //       setCharactersFiltered(temp);
-  //     } else {
-  //       let temp = characters.filter(
-  //         (item) =>
-  //           item.location.name.includes(selectedLocation) &&
-  //           item.status.includes(selectedFilters)
-  //       );
-  //       setCharactersFiltered(temp);
-  //     }
-  //     console.log("Called" + selectedLocation);
-  //     // console.log("Category items = " + temp);
-
-  //     // let temp1 = characters.filter((items) => {
-  //     //   return selectedCategory === ""
-  //     //     ? items
-  //     //     : items.status.includes(selectedCategory);
-  //     // });
-  //     // console.log("Category items 1  = " + temp1);
-  //     // return temp;
-  //     // console.log("Category items charachter = " + charactersFiltered);
-  //   } else {
-  //     setCharactersFiltered(characters);
-  //   }
-  // };
-
-  // const handleFilterBtnClickGender = (items) => {
-  //   if (selectedGender === null) {
-  //     setselectedGender(items);
-  //   } else if (selectedGender !== items) {
-  //     setselectedGender(items);
-  //   } else {
-  //     setselectedGender(null);
-  //   }
-  // };
-  // useEffect(() => {
-  //   filterItemsGen();
-  // }, [selectedGender]);
-  // const filterItemsGen = () => {
-  //   if (selectedGender !== null) {
-  //     if (selectedFilters === null && selectedLocation===null) {
-  //       let temp = characters.filter((item) =>
-  //         item.gender.includes(selectedGender)
-  //       );
-  //       setCharactersFiltered(temp);
-  //     } else if (selectedFilters !== null && selectedLocation!==null){
-  //       let temp = characters.filter(
-  //         (item) =>
-  //           item.location.name.includes(selectedLocation) &&
-  //           item.status.includes(selectedFilters) && item.gender.includes(selectedGender)
-  //       );
-  //       setCharactersFiltered(temp);
-  //     }
-  //     console.log("Called" + selectedLocation);
-  //   } else {
-  //     setCharactersFiltered(characters);
-  //   }
-  // };
+  useEffect(() => {
+    const getData = async () => {
+      const allfilterchar = await getAllDataFromApi();
+      setCharactersFiltered(allfilterchar);
+    };
+    getData();
+  }, []);
 
   const [filters1, setFilters1] = useState({
     status: "",
@@ -237,6 +123,7 @@ const Charactercards = () => {
     gender: "",
     species: "",
     type: "",
+    episode: "",
   });
 
   const handleFilterChangedata = (field, value) => {
@@ -253,7 +140,8 @@ const Charactercards = () => {
         (!filters1.location || item.location.name === filters1.location) &&
         (!filters1.gender || item.gender === filters1.gender) &&
         (!filters1.species || item.species === filters1.species) &&
-        (!filters1.type || item.type === filters1.type)
+        (!filters1.type || item.type === filters1.type) &&
+        (!filters1.episode || item.episode.includes(filters1.episode))
       );
     });
 
@@ -394,6 +282,44 @@ const Charactercards = () => {
               </div>
             </div>
           </div>
+          <div className={Style.dropdown}>
+            <button
+              name="Episode Name"
+              className={Style.filterbtn}
+              onClick={getEpisodeName}
+            >
+              Episodes - {EpisodeNameId.id}-{EpisodeNameId.name}
+            </button>
+            <div className={Style.dropdowncontent}>
+              <div className={Style.categoryArea}>
+                {allEpisodeName.map((i, items) => (
+                  <div
+                    type="checkbox"
+                    value={items}
+                    className={Style.category}
+                    onClick={() => {
+                      setEpisodeNameId({
+                        id: items+1,
+                        name: i,
+                      });
+                      handleFilterChangedata(
+                        "episode",
+                        `https://rickandmortyapi.com/api/episode/${items + 1}`
+                      );
+                    }}
+                  >
+                    {/* {
+                    setEpisodeNameId({
+                      ["id"]:items,
+                      ["name"]:i
+                    })
+                    } */}
+                    {items + 1} - {i}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
 
           <button className={Style.filterbtn} onClick={getGenders}>
             episode
@@ -447,7 +373,9 @@ const Charactercards = () => {
               <img src={items.image} />
               <div className={Style.detail}>
                 <div className={Style.section}>
-                  <div className={Style.nameSec}>Name : {items.name} </div>
+                  <div className={Style.nameSec}>
+                    Name : {items.name}-({items.id}){" "}
+                  </div>
                   <span>
                     {" "}
                     {items.status} - {items.species}{" "}
