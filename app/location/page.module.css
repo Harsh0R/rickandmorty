@@ -1,0 +1,9 @@
+.heading {
+    font-size: 4vw;
+    font-weight: 600;
+    background-image: radial-gradient(circle, #553c9a, #ee4b2b);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-align: center;
+}

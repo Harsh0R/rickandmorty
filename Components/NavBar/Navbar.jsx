@@ -6,23 +6,22 @@ const Navbar = () => {
     <div className={Style.header}>
       <nav className={Style.nav}>
         <div className={Style.logo}>
-          <img src="https://rickandmortyapi.com/api/character/avatar/132.jpeg" />
+          <a href="/">
+            <img src="https://rickandmortyapi.com/api/character/avatar/19.jpeg" />
+          </a>
         </div>
         <div className={Style.icon}>
           <span className={Style.toggle}>☰</span>
         </div>
         <ul className={Style.listitem}>
           <li>
-            <a href="#">Home</a>
+            <a href="/">Home</a>
           </li>
           <li>
-            <a href="#">Facebook</a>
+            <a href="/location">Location</a>
           </li>
           <li>
-            <a href="#">Twitter</a>
-          </li>
-          <li>
-            <a href="#">Categorys</a>
+            <a href="/episodes">Episodes</a>
           </li>
           <li>
             <a href="#">Contact us</a>

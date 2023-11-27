@@ -32,6 +32,7 @@ export async function getAllEpisodeName() {
     throw error;
   }
 }
+
 export async function getAllEpisode() {
   try {
     let currentPage = 1;
@@ -149,86 +150,3 @@ export async function getAllType() {
     console.log("Error while fetching all type = " + error);
   }
 }
-
-// const page = () => {
-//   const [search, setSearch] = useState("");
-//   const [characters, setCharacters] = useState([]);
-//   const [uniqueLocations, setUniqueLocations] = useState([]);
-//   const [uniqueStatus, setUniqueStatus] = useState([]);
-//   const [uniqueGender, setUniqueGender] = useState([]);
-//   const [uniqueSpecies, setUniqueSpecies] = useState([]);
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await axios.get(
-//           "https://rickandmortyapi.com/api/character/"
-//         );
-//         const data = response.data;
-//         setCharacters(data.results);
-
-//         // Extract unique locations
-//         const status = Array.from(
-//           new Set(data.results.map((item) => item.status))
-//         );
-//         setUniqueStatus(status);
-
-//         const loction = Array.from(
-//           new Set(data.results.map((item) => item.location.name))
-//         );
-//         setUniqueLocations(loction);
-//         const gender = Array.from(
-//           new Set(data.results.map((item) => item.gender))
-//         );
-//         setUniqueGender(gender);
-//         const species = Array.from(
-//           new Set(data.results.map((item) => item.species))
-//         );
-//         setUniqueSpecies(species);
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   return (
-//     <div>
-//       <div>
-//         <strong>Status</strong>
-//         <ul>
-//           {uniqueStatus.map((status, index) => (
-//             <li key={index}>{index} ---{status}</li>
-//           ))}
-//         </ul>
-//       </div>
-//       <div>
-//         <strong>location</strong>
-//         <ul>
-//           {uniqueLocations.map((location, index) => (
-//             <li key={index}> {index} --- {location}</li>
-//           ))}
-//         </ul>
-//       </div>
-//       <div>
-//         <strong>gender</strong>
-//         <ul>
-//           {uniqueGender.map((gender, index) => (
-//             <li key={index}>{index} ---{gender}</li>
-//           ))}
-//         </ul>
-//       </div>
-//       <div>
-//         <strong>species</strong>
-//         <ul>
-//           {uniqueSpecies.map((species, index) => (
-//             <li key={index}>{index} ---{species}</li>
-//           ))}
-//         </ul>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default page;

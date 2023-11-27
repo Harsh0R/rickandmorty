@@ -19,9 +19,14 @@
 }
 
 .logo {
-    padding: 10px;
+    margin: 10px;
+    padding: 0px;
     width: auto;
     float: left;
+    border: 1px solid wheat;
+    border-radius: 100%;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 .logo img {

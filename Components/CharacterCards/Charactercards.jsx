@@ -2,11 +2,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Image from "next/image";
 import Style from "./Charactercards.module.css";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import Characterdetails from "../CharacterDetails/Characterdetails";
 import {
   getAllStatus,
   getAllLocation,
@@ -16,7 +13,7 @@ import {
   getAllEpisodeName,
   getAllDataFromApi,
 } from "@/Components/demo/page";
-import FilterSection from "../FilterSection/FilterSection";
+import Cards from "../Cards/Cards";
 
 const Charactercards = () => {
   const [characters, setCharacters] = useState([]);
@@ -26,7 +23,6 @@ const Charactercards = () => {
 
   const [status, setStatus] = useState([]);
   const [location, setLocation] = useState([]);
-  const [episode, setEpisode] = useState([]);
   const [gender, setGender] = useState([]);
   const [species, setSpecies] = useState([]);
   const [type, setType] = useState([]);
@@ -37,85 +33,28 @@ const Charactercards = () => {
   });
   const [allEpisodeName, setAllEpisodeName] = useState([]);
 
-  const [activeFilter, setActiveFilter] = useState(false);
-
-  async function getStatus() {
-    const st = await getAllStatus();
-    setStatus(st);
-    console.log("ST = " + status);
-  }
-  async function getLocations() {
-    const st = await getAllLocation();
-    setLocation(st);
-    console.log("Locations = " + location);
-  }
-  async function getGenders() {
-    const st = await getAllGender();
-    setGender(st);
-    console.log("Gender = " + gender);
-  }
-  async function getSpecies() {
-    const st = await getAllSpecies();
-    setSpecies(st);
-    console.log("species = " + species);
-  }
-  async function getType() {
-    const st = await getAllType();
-    setType(st);
-    console.log("type = " + type);
-  }
-  async function getEpisodeName() {
-    const ep = await getAllEpisodeName();
-    setAllEpisodeName(ep);
-  }
-
   // Fetching data from API
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Fetch data from the first page
-        // const response = await axios.get(
-        //   "https://rickandmortyapi.com/api/character?page=2"
-        // );
-        let currentPage = 1;
-        let allCharacters = [];
-        while (currentPage < 43) {
-          const response = await axios.get(
-            `https://rickandmortyapi.com/api/character/?page=${currentPage}`
-          );
-          const data = response.data;
-          // If there are no more pages, break out of the loop
-          // if (data.info.next === null) {
-          //   break;
-          // }
-          // Concatenate characters from the current page to the existing array
-          allCharacters = allCharacters.concat(data.results);
-          // Move to the next page
-          currentPage++;
-        }
-
-        // const data = response.data;
-        // const data1 = data.results;
-        // setCharacters(data1);
-
-        setCharacters(allCharacters);
-        // setCharactersFiltered(allCharacters);
-        console.log("Char =" + characters + "typr = " + typeof characters);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    fetchData(); // Call the async function
-  }, []); // Empty dependency array to run the effect only once
-
   useEffect(() => {
     const getData = async () => {
       const allfilterchar = await getAllDataFromApi();
+      setCharacters(allfilterchar);
       setCharactersFiltered(allfilterchar);
+      let st = await getAllStatus();
+      setStatus(st);
+      st = await getAllLocation();
+      setLocation(st);
+      st = await getAllGender();
+      setGender(st);
+      st = await getAllSpecies();
+      setSpecies(st);
+      st = await getAllType();
+      setType(st);
+      let ep = await getAllEpisodeName();
+      setAllEpisodeName(ep);
     };
     getData();
   }, []);
+
 
   const [filters1, setFilters1] = useState({
     status: "",
@@ -148,6 +87,49 @@ const Charactercards = () => {
     setCharactersFiltered(filteredItems);
   }, [filters1, characters]); // Add dependencies to avoid infinite re-renders
 
+  const clearAllFilters = () => {
+    setFilters1({
+      status: "",
+      location: "",
+      gender: "",
+      species: "",
+      type: "",
+      episode: "",
+    });
+    setEpisodeNameId({ id: "", name: "" });
+  };
+  const clearStFilters = () => {
+    setFilters1({
+      status: "",
+    });
+  };
+  const clearLoFilters = () => {
+    setFilters1({
+      location: "",
+    });
+  };
+  const clearGeFilters = () => {
+    setFilters1({
+      gender: "",
+    });
+  };
+  const clearSpFilters = () => {
+    setFilters1({
+      species: "",
+    });
+  };
+  const clearTyFilters = () => {
+    setFilters1({
+      type: "",
+    });
+  };
+  const clearEpFilters = () => {
+    setFilters1({
+      episode: "",
+    });
+    setEpisodeNameId({ id: "", name: "" });
+  };
+
   return (
     <div className={Style.container1}>
       {/* heading */}
@@ -169,18 +151,24 @@ const Charactercards = () => {
 
       {/* Filter Section */}
       <div className={Style.filters}>
-        <div className={Style.filterHeading}>Filters :🔦</div>
+        <div className={Style.filterHeading}>Filters Character By :🔦</div>
         <div className={Style.filterBtns}>
           <div className={Style.dropdown}>
             <button
               name="Status"
               className={Style.filterbtn}
-              onClick={getStatus}
+              // onClick={getStatus}
             >
               Status - {filters1.status}
             </button>
             <div className={Style.dropdowncontent}>
               <div className={Style.categoryArea}>
+                <button
+                  className={Style.filterbtnToClear}
+                  onClick={clearStFilters}
+                >
+                  Clear Status
+                </button>
                 {status.map((items) => (
                   <div
                     type="checkbox"
@@ -198,12 +186,18 @@ const Charactercards = () => {
             <button
               name="Location"
               className={Style.filterbtn}
-              onClick={getLocations}
+              // onClick={getLocations}
             >
               Location - {filters1.location}
             </button>
             <div className={Style.dropdowncontent}>
               <div className={Style.categoryArea}>
+                <button
+                  className={Style.filterbtnToClear}
+                  onClick={clearLoFilters}
+                >
+                  Clear Location
+                </button>
                 {location.map((items) => (
                   <div
                     type="checkbox"
@@ -221,12 +215,18 @@ const Charactercards = () => {
             <button
               name="Gender"
               className={Style.filterbtn}
-              onClick={getGenders}
+              // onClick={getGenders}
             >
               Gender - {filters1.gender}
             </button>
             <div className={Style.dropdowncontent}>
               <div className={Style.categoryArea}>
+                <button
+                  className={Style.filterbtnToClear}
+                  onClick={clearGeFilters}
+                >
+                  Clear Gender
+                </button>
                 {gender.map((items) => (
                   <div
                     type="checkbox"
@@ -244,12 +244,18 @@ const Charactercards = () => {
             <button
               name="species"
               className={Style.filterbtn}
-              onClick={getSpecies}
+              // onClick={getSpecies}
             >
-              species - {filters1.species}
+              Species - {filters1.species}
             </button>
             <div className={Style.dropdowncontent}>
               <div className={Style.categoryArea}>
+                <button
+                  className={Style.filterbtnToClear}
+                  onClick={clearSpFilters}
+                >
+                  Clear Species
+                </button>
                 {species.map((items) => (
                   <div
                     type="checkbox"
@@ -264,11 +270,17 @@ const Charactercards = () => {
             </div>
           </div>
           <div className={Style.dropdown}>
-            <button name="Type" className={Style.filterbtn} onClick={getType}>
+            <button name="Type" className={Style.filterbtn}>
               Type - {filters1.type}
             </button>
             <div className={Style.dropdowncontent}>
               <div className={Style.categoryArea}>
+                <button
+                  className={Style.filterbtnToClear}
+                  onClick={clearTyFilters}
+                >
+                  Clear Type
+                </button>
                 {type.map((items) => (
                   <div
                     type="checkbox"
@@ -286,12 +298,18 @@ const Charactercards = () => {
             <button
               name="Episode Name"
               className={Style.filterbtn}
-              onClick={getEpisodeName}
+              // onClick={getEpisodeName}
             >
               Episodes - {EpisodeNameId.id}-{EpisodeNameId.name}
             </button>
             <div className={Style.dropdowncontent}>
               <div className={Style.categoryArea}>
+                <button
+                  className={Style.filterbtnToClear}
+                  onClick={clearEpFilters}
+                >
+                  Clear Episodes
+                </button>
                 {allEpisodeName.map((i, items) => (
                   <div
                     type="checkbox"
@@ -299,7 +317,7 @@ const Charactercards = () => {
                     className={Style.category}
                     onClick={() => {
                       setEpisodeNameId({
-                        id: items+1,
+                        id: items + 1,
                         name: i,
                       });
                       handleFilterChangedata(
@@ -308,97 +326,35 @@ const Charactercards = () => {
                       );
                     }}
                   >
-                    {/* {
-                    setEpisodeNameId({
-                      ["id"]:items,
-                      ["name"]:i
-                    })
-                    } */}
                     {items + 1} - {i}
                   </div>
                 ))}
               </div>
             </div>
           </div>
-
-          <button className={Style.filterbtn} onClick={getGenders}>
-            episode
+          <button
+            className={Style.filterbtnToClearAll}
+            onClick={clearAllFilters}
+          >
+            Clear All
           </button>
         </div>
       </div>
 
-      {/* All Character's Card component */}
-      {activeFilter && (
-        <div className={Style.containerForCharacters}>
-          {characters
-            .filter((items) => {
-              return search.toLowerCase() === ""
-                ? items
-                : items.name.toLowerCase().includes(search.toLowerCase());
-            })
-            .map((items) => (
-              <div className={Style.container}>
-                <img src={items.image} />
-                <div className={Style.detail}>
-                  <div className={Style.section}>
-                    <div className={Style.nameSec}>Name : {items.name} </div>
-                    <span>
-                      {" "}
-                      {items.status} - {items.species}{" "}
-                    </span>
-                  </div>
-                  <div className={Style.section}>
-                    <div className={Style.loca}>Last known location:</div>
-                    <div> {items.location.name} </div>
-                  </div>
-                  <div className={Style.section}>
-                    <div className={Style.loca}>First seen in:</div>
-                    <div> {items.origin.name} </div>
-                  </div>
-                  <Link href={`/characters/${items.id}`}>
-                    <div className={Style.detailBtn}>
-                      <button>View Profile</button>
-                    </div>
-                  </Link>
-                </div>
-              </div>
-            ))}
-        </div>
-      )}
-
-      {!activeFilter && (
-        <div className={Style.containerForCharacters}>
-          {charactersFiltered.map((items) => (
-            <div className={Style.container}>
-              <img src={items.image} />
-              <div className={Style.detail}>
-                <div className={Style.section}>
-                  <div className={Style.nameSec}>
-                    Name : {items.name}-({items.id}){" "}
-                  </div>
-                  <span>
-                    {" "}
-                    {items.status} - {items.species}{" "}
-                  </span>
-                </div>
-                <div className={Style.section}>
-                  <div className={Style.loca}>Last known location:</div>
-                  <div> {items.location.name} </div>
-                </div>
-                <div className={Style.section}>
-                  <div className={Style.loca}>First seen in:</div>
-                  <div> {items.origin.name} </div>
-                </div>
-                <Link href={`/characters/${items.id}`}>
-                  <div className={Style.detailBtn}>
-                    <button>View Profile</button>
-                  </div>
-                </Link>
-              </div>
+      {/* All Characters Cards */}
+      <div className={Style.containerForCharacters}>
+        {charactersFiltered
+          .filter((items) => {
+            return search.toLowerCase() === ""
+              ? items
+              : items.name.toLowerCase().includes(search.toLowerCase());
+          })
+          .map((items) => (
+            <div container>
+              <Cards items={items} />
             </div>
           ))}
-        </div>
-      )}
+      </div>
     </div>
   );
 };
