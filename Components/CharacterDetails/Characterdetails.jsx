@@ -1,56 +1,139 @@
 "use client";
 import React from "react";
 import { useEffect, useState } from "react";
+import Style from "./CharacterDetails.module.css";
 import axios from "axios";
-
-const Characterdetails = ({ index }) => {
-  const [characters, setCharacters] = useState([]);
-
+import LoadingPage from "../LoadingPage/LoadingPage";
+const characterdetails = ({ index }) => {
+  const [characters, setCharacters] = useState();
+  const [location, setLocation] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [origin, setOrigin] = useState({});
+  const [episode, setEpisode] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
         let charNo = index % 20;
         let pageNo = parseInt(index / 20) + 1;
-        console.log("page no = " + pageNo);
         const response = await axios.get(
           `https://rickandmortyapi.com/api/character?page=${pageNo}`
         );
         const data = response.data;
         const data1 = data.results[charNo - 1];
-        console.log("data1 = " + data1.id);
+        const urlForCurrLoca = data1.location.url;
+        const urlForOriginLoca = data1.origin.url;
+
+        const CurrlocationData = await axios.get(urlForCurrLoca);
+        const CurrdataLoca = CurrlocationData.data;
+        const OriginlocationData = await axios.get(urlForOriginLoca);
+        const OrigindataLoca = OriginlocationData.data;
+
+        setLocation(CurrdataLoca);
+        setOrigin(OrigindataLoca);
+
         setCharacters(data1);
+        console.log("Episodes = " + data1);
+
+        const episodeData = data1.episode.map((url) => axios.get(url));
+        const epData = await Promise.all(episodeData);
+        // console.log("EpData - -=-= ", epData);
+
+        // Process the data or log as needed
+        const episodeDetails = epData.map((response) => response.data);
+        console.log("Episode Data:", episodeDetails);
+        setEpisode(episodeDetails);
+        setLoading(false)
       } catch (error) {
-        console.log(error);
+        console.log("error in charDetail Page = " + error);
+        setLoading(false)
       }
     };
     fetchData(); // Call the async function
-    // console.log("Char = " + characters.id + "typr = " + typeof(characters));
-  }, [index]); // Empty dependency array to run the effect only once
+  }, []); // Empty dependency array to run the effect only once
 
-  useEffect(() => {
-    // Log characters.id after the state has been updated
-    console.log("Char = " + characters.id + "type = " + typeof characters);
-  }, [characters]); // Include characters in the dependency array to re-run the effect when characters changes
-
+  if (loading) {
+    return (
+      <div className={Style.loadingPage}>
+        <LoadingPage />
+      </div>
+    );
+  }
+  
   return (
-    <div>
-      <div>
-        Id = {characters.id}
-        <img src={characters.image} width={300} />
+    <div className={Style.container}>
+      <div className={Style.characterinfo}>
+        <div className={Style.heading}>
+          <div className={Style.heading}>Character's Information</div>
+          {/* <div> Id = {characters.id}</div> */}
+        </div>
+          <img src={characters.image} alt={characters.name} />
+        <div>
+          <label className={Style.label}>
+            <br />
+            characters Name : {characters.name}
+            <br />
+            characters status : {characters.status}
+            <br />
+            characters species : {characters.species}
+            <br />
+            characters gender : {characters.gender}
+            <br />
+          </label>
+        </div>
       </div>
-      <div>
-        {characters.name}
-        <br />
-        {characters.species}
-        <br />
-        {characters.gender}
-        <br />
-      </div>
-      <div>
 
+      <div className={Style.characterLocainfo}>
+        <label>
+          <div className={Style.heading}>
+            Origin and Current location details :
+          </div>
+          <br />
+          {characters.origin.url !== "" ? (
+            <label>
+              Origin Location : {characters.origin.name}
+              <br />
+              dimension : {origin.dimension}
+              <br />
+              amount of residents : {origin.residents.length}
+            </label>
+          ) : (
+            <label>
+              Origin Location : --
+              <br />
+              dimension : --
+              <br />
+              amount of residents : --
+            </label>
+          )}
+          <div className={Style.line}></div>
+          <label>
+            <br />
+            Current location Name : {location.name}
+            <br />
+            dimension : {location.dimension}
+            <br />
+            amount of residents : {location.residents.length}
+          </label>
+          <br />
+        </label>
+      </div>
+
+      <div className={Style.characterEpinfo}>
+        <label className={Style.label}>
+          <div className={Style.heading}>
+            Episodes the character is featured : ({episode.length})
+          </div>
+          <div className={Style.episodes}>
+            {episode.map((i) => (
+              <div className={Style.episodeitem} key={i.id}>
+                {i.id} - {i.name}
+              </div>
+            ))}
+          </div>
+        </label>
       </div>
     </div>
   );
 };
 
-export default Characterdetails;
+export default characterdetails;

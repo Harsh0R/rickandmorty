@@ -1,5 +1,3 @@
-"use client";
-import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export async function getAllEpisodeName() {
@@ -24,7 +22,7 @@ export async function getAllEpisodeName() {
     // return allCharacters;
 
     const status = Array.from(new Set(allCharacters.map((item) => item.name)));
-    console.log("Staus = " + status);
+    // console.log("Staus = " + status);
     return status;
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -32,20 +30,19 @@ export async function getAllEpisodeName() {
     throw error;
   }
 }
-
 export async function getAllEpisode() {
   try {
     let currentPage = 1;
     let allCharacters = [];
-    while (true) {
+    while (currentPage < 4) {
       const response = await axios.get(
         `https://rickandmortyapi.com/api/episode?page=${currentPage}`
       );
       const data = response.data;
       // If there are no more pages, break out of the loop
-      if (data.info.next === null) {
-        break;
-      }
+      // if (data.info.next === null) {
+      //   break;
+      // }
       // Concatenate characters from the current page to the existing array
       allCharacters = allCharacters.concat(data.results);
       // Move to the next page
@@ -59,14 +56,13 @@ export async function getAllEpisode() {
     throw error;
   }
 }
-
-export async function getAllDataFromApi() {
+export async function getAllLocations() {
   try {
     let currentPage = 1;
     let allCharacters = [];
-    while (currentPage < 43) {
+    while (currentPage < 8) {
       const response = await axios.get(
-        `https://rickandmortyapi.com/api/character/?page=${currentPage}`
+        `https://rickandmortyapi.com/api/location?page=${currentPage}`
       );
       const data = response.data;
       // If there are no more pages, break out of the loop
@@ -87,6 +83,35 @@ export async function getAllDataFromApi() {
   }
 }
 
+export async function getAllDataFromApi() {
+  try {
+    let currentPage = 1;
+    let allCharacters = [];
+    const response = await axios.get(
+      `https://rickandmortyapi.com/api/character/?page=${currentPage}`
+    );
+    const data = response.data;
+    allCharacters = allCharacters.concat(data.results);
+    currentPage++;
+
+    while (currentPage < 43) {
+      const response = await axios.get(
+        `https://rickandmortyapi.com/api/character/?page=${currentPage}`
+      );
+      const data = response.data;
+      allCharacters = allCharacters.concat(data.results);
+      // Move to the next page
+      currentPage++;
+    }
+    // console.log(`All Data = ${allCharacters}`);
+    return allCharacters;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    // Rethrow the error or return a default value depending on your needs
+    throw error;
+  }
+}
+
 export async function getAllStatus() {
   try {
     let allCharacters = [];
@@ -94,8 +119,8 @@ export async function getAllStatus() {
     const status = Array.from(
       new Set(allCharacters.map((item) => item.status))
     );
-    console.log("Staus = " + status);
-    return status; 
+    // console.log("Staus = " + status);
+    return status;
   } catch (error) {
     console.log("Error while fetching all status = " + error);
   }
@@ -108,7 +133,7 @@ export async function getAllLocation() {
     const loc = Array.from(
       new Set(allCharacters.map((item) => item.location.name))
     );
-    console.log("Staus = " + loc);
+    // console.log("Staus = " + loc);
     return loc;
   } catch (error) {
     console.log("Error while fetching all location = " + error);
@@ -120,7 +145,7 @@ export async function getAllGender() {
     let allCharacters = [];
     allCharacters = await getAllDataFromApi();
     const loc = Array.from(new Set(allCharacters.map((item) => item.gender)));
-    console.log("gen = " + loc);
+    // console.log("gen = " + loc);
     return loc;
   } catch (error) {
     console.log("Error while fetching all gender = " + error);
@@ -132,7 +157,7 @@ export async function getAllSpecies() {
     let allCharacters = [];
     allCharacters = await getAllDataFromApi();
     const loc = Array.from(new Set(allCharacters.map((item) => item.species)));
-    console.log("gen = " + loc);
+    // console.log("gen = " + loc);
     return loc;
   } catch (error) {
     console.log("Error while fetching all species = " + error);
@@ -144,7 +169,7 @@ export async function getAllType() {
     let allCharacters = [];
     allCharacters = await getAllDataFromApi();
     const loc = Array.from(new Set(allCharacters.map((item) => item.type)));
-    console.log("gen = " + loc);
+    // console.log("gen = " + loc);
     return loc;
   } catch (error) {
     console.log("Error while fetching all type = " + error);

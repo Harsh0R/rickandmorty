@@ -2,12 +2,10 @@
 import Characterdetails from "@/Components/CharacterDetails/Characterdetails";
 import { useRouter } from "next/router";
 import React from "react";
-import { useParams } from "next/navigation";
-import GridComponent from "@/Components/GridComponent/GridComponent";
 import { getAllDataFromApi } from "@/Components/demo/page";
 import { useState,useEffect } from "react";
 
-const page = () => {
+const page = ({ items }) => {
 
   const [characters, setCharacters] = useState([]);
 

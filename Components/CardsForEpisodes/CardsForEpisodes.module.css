@@ -1,31 +1,28 @@
 .container {
     padding: 1rem; /* Add padding for better spacing on small screens */
-    color: rgb(250, 235, 215);
     display: flex;
     overflow: hidden;
     width: 100%; /* Use a relative width for responsiveness */
     max-width: 600px; /* Set a maximum width for larger screens */
     background: rgb(27, 33, 49);
-    border-radius: 0.5rem;
-    margin:10px; /* Center the container and adjust margin */
+    margin:auto; /* Center the container and adjust margin */
     height: auto; /* Allow the height to adjust based on content */
     border: 3px solid rgb(31, 21, 21);
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
     box-sizing: border-box; /* Include padding and border in the total width */
-}
-@media screen and (max-width: 550px) {
-    .container {
-        flex-direction: column; /* Stack items in a column on small screens */
-    }
-}
 
-
-.detail {
     flex: 3 1 0%;
     position: relative;
     padding: 0.75rem;
     color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
+}
+@media screen and (max-width: 550px) {
+    .container {
+        flex-direction: column; /* Stack items in a column on small screens */
+    }
 }
 
 .section {

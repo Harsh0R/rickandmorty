@@ -1,9 +1,7 @@
 "use client";
 import React from "react";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Style from "./Charactercards.module.css";
-import Link from "next/link";
 import {
   getAllStatus,
   getAllLocation,
@@ -14,13 +12,14 @@ import {
   getAllDataFromApi,
 } from "@/Components/demo/page";
 import Cards from "../Cards/Cards";
+import LoadingPage from "../LoadingPage/LoadingPage";
 
 const Charactercards = () => {
   const [characters, setCharacters] = useState([]);
   const [charactersFiltered, setCharactersFiltered] = useState([]);
 
   const [search, setSearch] = useState("");
-
+  const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState([]);
   const [location, setLocation] = useState([]);
   const [gender, setGender] = useState([]);
@@ -36,25 +35,30 @@ const Charactercards = () => {
   // Fetching data from API
   useEffect(() => {
     const getData = async () => {
-      const allfilterchar = await getAllDataFromApi();
-      setCharacters(allfilterchar);
-      setCharactersFiltered(allfilterchar);
-      let st = await getAllStatus();
-      setStatus(st);
-      st = await getAllLocation();
-      setLocation(st);
-      st = await getAllGender();
-      setGender(st);
-      st = await getAllSpecies();
-      setSpecies(st);
-      st = await getAllType();
-      setType(st);
-      let ep = await getAllEpisodeName();
-      setAllEpisodeName(ep);
+      try {
+        const allfilterchar = await getAllDataFromApi();
+        setCharacters(allfilterchar);
+        setCharactersFiltered(allfilterchar);
+        let st = await getAllStatus();
+        setStatus(st);
+        st = await getAllLocation();
+        setLocation(st);
+        st = await getAllGender();
+        setGender(st);
+        st = await getAllSpecies();
+        setSpecies(st);
+        st = await getAllType();
+        setType(st);
+        let ep = await getAllEpisodeName();
+        setAllEpisodeName(ep);
+        setLoading(false); // Set loading to false when data is fetched
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setLoading(false); // Set loading to false in case of an error
+      }
     };
     getData();
   }, []);
-
 
   const [filters1, setFilters1] = useState({
     status: "",
@@ -130,13 +134,15 @@ const Charactercards = () => {
     setEpisodeNameId({ id: "", name: "" });
   };
 
+  if (loading) {
+    return (
+      <div className={Style.loadingPage}>
+        <LoadingPage />
+      </div>
+    );
+  }
   return (
     <div className={Style.container1}>
-      {/* heading */}
-      <header>
-        <div className={Style.heading}>The Rick and Morty</div>
-      </header>
-
       {/* Search section */}
       <div action="" className={Style.searchbar}>
         <input
@@ -151,7 +157,7 @@ const Charactercards = () => {
 
       {/* Filter Section */}
       <div className={Style.filters}>
-        <div className={Style.filterHeading}>Filters Character By :🔦</div>
+        <div className={Style.filterHeading}>🔦 Filters Character By :</div>
         <div className={Style.filterBtns}>
           <div className={Style.dropdown}>
             <button
@@ -353,7 +359,8 @@ const Charactercards = () => {
             <div container>
               <Cards items={items} />
             </div>
-          ))}
+          ))
+        }
       </div>
     </div>
   );

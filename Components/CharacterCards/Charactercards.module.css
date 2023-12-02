@@ -1,5 +1,4 @@
 .container1 {
-    background-color: black;
     padding: 1rem; /* Adjust padding for better spacing on small screens */
 }
 
@@ -19,8 +18,14 @@
     justify-content: space-around;
     margin: 1rem; /* Adjust margin for better spacing on small screens */
 }
+.loadingPage{
+    margin-top: 5rem;
+}
 .searchbar {
-    padding: 1rem;
+    width: 80%;
+    margin-top: 3.8rem;
+    padding-top: 1rem;
+    margin: auto;
     display: flex;
     align-items: center;
 }
@@ -48,7 +53,6 @@
     font-weight: 800;
 }
 
-.filterBtns {}
 
 .filterbtnToClear{
     margin: 10px;
@@ -75,7 +79,7 @@
     transition: background-color 500ms;
 }
 .filterbtnToClearAll:hover {
-    background-color: #9a3c3c;
+    background-color:#dd1515ca;
     transition: background-color 500ms;
 }
 
@@ -103,10 +107,25 @@
     max-height: 253px;
     overflow-y: scroll;
 }
-.dropdowncontent::-webkit-scrollbar{
-    width:0;
+
+.dropdowncontent::-webkit-scrollbar {
+    width: 12px;
+    /* width of the entire scrollbar */
 }
 
+.dropdowncontent::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0);
+    /* color of the tracking area */
+}
+
+.dropdowncontent::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 0, 0);
+    /* color of the scroll thumb */
+    border-radius: 20px;
+    /* roundness of the scroll thumb */
+    border: 3px solid rgb(0, 0, 0);
+    /* creates padding around scroll thumb */
+}
 
 .dropdown:hover .dropdowncontent {
     display: block;

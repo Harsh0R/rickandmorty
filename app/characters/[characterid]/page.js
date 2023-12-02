@@ -7,7 +7,6 @@ const page = ({ params }) => {
   const ID = params.characterid;
   return (
     <div>
-      {/* page in character = {ID} */}
       <Characterdetails index={ID} />
     </div>
   );
