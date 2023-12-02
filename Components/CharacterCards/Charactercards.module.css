@@ -2,16 +2,6 @@
     padding: 1rem; /* Adjust padding for better spacing on small screens */
 }
 
-.heading {
-    font-size: 4vw;
-    font-weight: 600;
-    background-image: radial-gradient(circle, #553c9a, #ee4b2b);
-    color: transparent;
-    background-clip: text;
-    -webkit-background-clip: text;
-    text-align: center;
-}
-
 .containerForCharacters {
     display: flex;
     flex-wrap: wrap;
@@ -23,7 +13,7 @@
 }
 .searchbar {
     width: 80%;
-    margin-top: 3.8rem;
+    margin-top:1.5rem;
     padding-top: 1rem;
     margin: auto;
     display: flex;
@@ -41,6 +31,7 @@
 
 .filters {
     margin: 1rem;
+    margin-top: 5rem;
     padding: 1rem;
     border-radius: 10px;
     box-shadow:0px 3px 25px -5px #ee4b2b;
@@ -52,7 +43,6 @@
     font-size: 2rem; /* Responsive font size */
     font-weight: 800;
 }
-
 
 .filterbtnToClear{
     margin: 10px;
@@ -139,7 +129,7 @@
     text-decoration: none;
 }
 
-.dropdowncontent div div:hover {
+.dropdowncontent div button:hover {
     color: #FFFFFF;
     border-radius: 10px;
     border: 2px solid slateblue;
@@ -170,7 +160,7 @@
         padding: 5px;
         text-decoration: none;
     }
-    .dropdowncontent div div:hover {
+    .dropdowncontent div button:hover {
         color: #FFFFFF;
         border-radius: 5px;
         border: 1px solid slateblue;

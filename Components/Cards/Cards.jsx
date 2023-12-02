@@ -1,8 +1,29 @@
+"use client";
 import React from "react";
 import Style from "./Cards.module.css";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 const Cards = ({ items }) => {
+  if (!items) {
+    return (
+      <div className={Style.container}>
+        {/* <img src={items.image} /> */}
+        <div className={Style.detail}>
+          <div className={Style.section}>
+            <div className={Style.nameSec}>
+              No characters found. Try adjusting your filters.
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  const [toggle, setToggle] = useState(true);
+  useEffect(() => {
+    setToggle(items.id);
+  }, []);
+
   return (
     <div>
       <div className={Style.container}>

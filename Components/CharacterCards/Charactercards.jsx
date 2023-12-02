@@ -141,19 +141,9 @@ const Charactercards = () => {
       </div>
     );
   }
+
   return (
     <div className={Style.container1}>
-      {/* Search section */}
-      <div action="" className={Style.searchbar}>
-        <input
-          className="sreachInput"
-          type="search"
-          name="search"
-          required=""
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search Character By Name... 🔎"
-        />
-      </div>
 
       {/* Filter Section */}
       <div className={Style.filters}>
@@ -176,14 +166,14 @@ const Charactercards = () => {
                   Clear Status
                 </button>
                 {status.map((items) => (
-                  <div
+                  <button
                     type="checkbox"
                     value={items}
                     className={Style.category}
                     onClick={() => handleFilterChangedata("status", items)}
                   >
                     {items}
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -205,14 +195,14 @@ const Charactercards = () => {
                   Clear Location
                 </button>
                 {location.map((items) => (
-                  <div
+                  <button
                     type="checkbox"
                     value={items}
                     className={Style.category}
                     onClick={() => handleFilterChangedata("location", items)}
                   >
                     {items}
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -234,14 +224,14 @@ const Charactercards = () => {
                   Clear Gender
                 </button>
                 {gender.map((items) => (
-                  <div
+                  <button
                     type="checkbox"
                     value={items}
                     className={Style.category}
                     onClick={() => handleFilterChangedata("gender", items)}
                   >
                     {items}
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -263,14 +253,14 @@ const Charactercards = () => {
                   Clear Species
                 </button>
                 {species.map((items) => (
-                  <div
+                  <button
                     type="checkbox"
                     value={items}
                     className={Style.category}
                     onClick={() => handleFilterChangedata("species", items)}
                   >
                     {items}
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -288,14 +278,14 @@ const Charactercards = () => {
                   Clear Type
                 </button>
                 {type.map((items) => (
-                  <div
+                  <button
                     type="checkbox"
                     value={items}
                     className={Style.category}
                     onClick={() => handleFilterChangedata("type", items)}
                   >
                     {items}
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -317,7 +307,7 @@ const Charactercards = () => {
                   Clear Episodes
                 </button>
                 {allEpisodeName.map((i, items) => (
-                  <div
+                  <button
                     type="checkbox"
                     value={items}
                     className={Style.category}
@@ -333,7 +323,7 @@ const Charactercards = () => {
                     }}
                   >
                     {items + 1} - {i}
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
@@ -347,21 +337,51 @@ const Charactercards = () => {
         </div>
       </div>
 
-      {/* All Characters Cards */}
-      <div className={Style.containerForCharacters}>
-        {charactersFiltered
-          .filter((items) => {
-            return search.toLowerCase() === ""
-              ? items
-              : items.name.toLowerCase().includes(search.toLowerCase());
-          })
-          .map((items) => (
-            <div container>
-              <Cards items={items} />
-            </div>
-          ))
-        }
+      {/* Search section */}
+      <div action="" className={Style.searchbar}>
+        <input
+          className="sreachInput"
+          type="search"
+          name="search"
+          required=""
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search Character By Name... 🔎"
+        />
       </div>
+
+      <div className={Style.containerForCharacters}>
+        {charactersFiltered.length === 0 ? (
+          <div className={Style.noCharactersMessage}>
+            <Cards />
+          </div>
+        ) : (
+          charactersFiltered
+            .filter((items) =>
+              search.toLowerCase() === ""
+                ? items
+                : items.name.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((items, index) => (
+              <div key={index} container>
+                <Cards items={items} />
+              </div>
+            ))
+        )}
+        {/* Display a message for no characters found based on search */}
+
+        {charactersFiltered.length > 0 && // If there are characters after filters
+          search.trim() !== "" && // If search is not empty
+          charactersFiltered.every(
+            (items) => !items.name.toLowerCase().includes(search.toLowerCase())
+          ) && (
+            <div className={Style.noCharactersMessage}>
+              No characters found with the name "{search}". Please try a
+              different name.
+            </div>
+          )}
+      </div>
+
+      
     </div>
   );
 };

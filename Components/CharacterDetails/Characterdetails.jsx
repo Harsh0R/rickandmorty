@@ -64,7 +64,6 @@ const characterdetails = ({ index }) => {
       <div className={Style.characterinfo}>
         <div className={Style.heading}>
           <div className={Style.heading}>Character's Information</div>
-          {/* <div> Id = {characters.id}</div> */}
         </div>
           <img src={characters.image} alt={characters.name} />
         <div>
