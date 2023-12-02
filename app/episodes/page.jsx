@@ -53,7 +53,7 @@ const page = () => {
 
   return (
     <div>
-      <div action="" className={Style.searchbar}>
+      <div className={Style.searchbar}>
         <input
           className="sreachInput"
           type="search"

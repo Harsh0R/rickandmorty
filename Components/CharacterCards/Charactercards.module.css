@@ -1,12 +1,12 @@
 .container1 {
-    padding: 1rem; /* Adjust padding for better spacing on small screens */
+    padding: 1rem; 
 }
 
 .containerForCharacters {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin: 1rem; /* Adjust margin for better spacing on small screens */
+    margin: 1rem; 
 }
 .loadingPage{
     margin-top: 5rem;
@@ -26,7 +26,7 @@
     text-align: center;
     width: 100%;
     background-color: transparent;
-    padding: 0.5rem; /* Adjust padding for better input styling */
+    padding: 0.5rem; 
 }
 
 .filters {
@@ -40,7 +40,7 @@
 
 
 .filterHeading {
-    font-size: 2rem; /* Responsive font size */
+    font-size: 2rem;
     font-weight: 800;
 }
 
@@ -100,21 +100,16 @@
 
 .dropdowncontent::-webkit-scrollbar {
     width: 12px;
-    /* width of the entire scrollbar */
 }
 
 .dropdowncontent::-webkit-scrollbar-track {
     background: rgb(0, 0, 0);
-    /* color of the tracking area */
 }
 
 .dropdowncontent::-webkit-scrollbar-thumb {
     background-color: rgb(255, 0, 0);
-    /* color of the scroll thumb */
     border-radius: 20px;
-    /* roundness of the scroll thumb */
     border: 3px solid rgb(0, 0, 0);
-    /* creates padding around scroll thumb */
 }
 
 .dropdown:hover .dropdowncontent {
@@ -135,23 +130,22 @@
     border: 2px solid slateblue;
 }
 
-/* Add media queries for different screen sizes */
 @media screen and (max-width: 768px) {
     .containerForCharacters {
         justify-content: center;
     }
     
     .filterHeading {
-        font-size: 1.5rem; /* Adjust font size for smaller screens */
+        font-size: 1.5rem;
     }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 768px) {
     .filterBtns {
-        width: 100%; /* Make buttons full width on smaller screens */
+        width: 100%; 
     }
     .dropdowncontent{
-        width: 100%; /* Make buttons full width on smaller screens */
+        width: 100%; 
     }
     .dropdowncontent div {
         display: grid;

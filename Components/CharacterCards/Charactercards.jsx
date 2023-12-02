@@ -10,14 +10,14 @@ import {
   getAllType,
   getAllEpisodeName,
   getAllDataFromApi,
-} from "@/Components/demo/page";
+} from "@/Components/demo/page"; // Importing data-fetching functions
 import Cards from "../Cards/Cards";
 import LoadingPage from "../LoadingPage/LoadingPage";
 
 const Charactercards = () => {
+  // State variables for managing characters and filters
   const [characters, setCharacters] = useState([]);
   const [charactersFiltered, setCharactersFiltered] = useState([]);
-
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState([]);
@@ -25,7 +25,6 @@ const Charactercards = () => {
   const [gender, setGender] = useState([]);
   const [species, setSpecies] = useState([]);
   const [type, setType] = useState([]);
-
   const [EpisodeNameId, setEpisodeNameId] = useState({
     id: "",
     name: "",
@@ -76,6 +75,7 @@ const Charactercards = () => {
     });
   };
 
+  // Effect to filter characters based on selected filters
   useEffect(() => {
     const filteredItems = characters.filter((item) => {
       return (
@@ -91,6 +91,7 @@ const Charactercards = () => {
     setCharactersFiltered(filteredItems);
   }, [filters1, characters]); // Add dependencies to avoid infinite re-renders
 
+  // Clearing filters
   const clearAllFilters = () => {
     setFilters1({
       status: "",
@@ -134,6 +135,7 @@ const Charactercards = () => {
     setEpisodeNameId({ id: "", name: "" });
   };
 
+  // Display loading page while data is being fetched
   if (loading) {
     return (
       <div className={Style.loadingPage}>
@@ -144,17 +146,12 @@ const Charactercards = () => {
 
   return (
     <div className={Style.container1}>
-
       {/* Filter Section */}
       <div className={Style.filters}>
         <div className={Style.filterHeading}>🔦 Filters Character By :</div>
         <div className={Style.filterBtns}>
           <div className={Style.dropdown}>
-            <button
-              name="Status"
-              className={Style.filterbtn}
-              // onClick={getStatus}
-            >
+            <button name="Status" className={Style.filterbtn}>
               Status - {filters1.status}
             </button>
             <div className={Style.dropdowncontent}>
@@ -167,6 +164,7 @@ const Charactercards = () => {
                 </button>
                 {status.map((items) => (
                   <button
+                    key={items.id}
                     type="checkbox"
                     value={items}
                     className={Style.category}
@@ -179,11 +177,7 @@ const Charactercards = () => {
             </div>
           </div>
           <div className={Style.dropdown}>
-            <button
-              name="Location"
-              className={Style.filterbtn}
-              // onClick={getLocations}
-            >
+            <button name="Location" className={Style.filterbtn}>
               Location - {filters1.location}
             </button>
             <div className={Style.dropdowncontent}>
@@ -196,6 +190,7 @@ const Charactercards = () => {
                 </button>
                 {location.map((items) => (
                   <button
+                    key={items.id}
                     type="checkbox"
                     value={items}
                     className={Style.category}
@@ -208,11 +203,7 @@ const Charactercards = () => {
             </div>
           </div>
           <div className={Style.dropdown}>
-            <button
-              name="Gender"
-              className={Style.filterbtn}
-              // onClick={getGenders}
-            >
+            <button name="Gender" className={Style.filterbtn}>
               Gender - {filters1.gender}
             </button>
             <div className={Style.dropdowncontent}>
@@ -225,6 +216,7 @@ const Charactercards = () => {
                 </button>
                 {gender.map((items) => (
                   <button
+                    key={items.id}
                     type="checkbox"
                     value={items}
                     className={Style.category}
@@ -237,11 +229,7 @@ const Charactercards = () => {
             </div>
           </div>
           <div className={Style.dropdown}>
-            <button
-              name="species"
-              className={Style.filterbtn}
-              // onClick={getSpecies}
-            >
+            <button name="species" className={Style.filterbtn}>
               Species - {filters1.species}
             </button>
             <div className={Style.dropdowncontent}>
@@ -254,6 +242,7 @@ const Charactercards = () => {
                 </button>
                 {species.map((items) => (
                   <button
+                    key={items.id}
                     type="checkbox"
                     value={items}
                     className={Style.category}
@@ -279,6 +268,7 @@ const Charactercards = () => {
                 </button>
                 {type.map((items) => (
                   <button
+                    key={items.id}
                     type="checkbox"
                     value={items}
                     className={Style.category}
@@ -291,11 +281,7 @@ const Charactercards = () => {
             </div>
           </div>
           <div className={Style.dropdown}>
-            <button
-              name="Episode Name"
-              className={Style.filterbtn}
-              // onClick={getEpisodeName}
-            >
+            <button name="Episode Name" className={Style.filterbtn}>
               Episodes - {EpisodeNameId.id}-{EpisodeNameId.name}
             </button>
             <div className={Style.dropdowncontent}>
@@ -308,6 +294,7 @@ const Charactercards = () => {
                 </button>
                 {allEpisodeName.map((i, items) => (
                   <button
+                    key={items.id}
                     type="checkbox"
                     value={items}
                     className={Style.category}
@@ -338,7 +325,7 @@ const Charactercards = () => {
       </div>
 
       {/* Search section */}
-      <div action="" className={Style.searchbar}>
+      <div className={Style.searchbar}>
         <input
           className="sreachInput"
           type="search"
@@ -349,6 +336,7 @@ const Charactercards = () => {
         />
       </div>
 
+      {/* characters cards */}
       <div className={Style.containerForCharacters}>
         {charactersFiltered.length === 0 ? (
           <div className={Style.noCharactersMessage}>
@@ -362,13 +350,13 @@ const Charactercards = () => {
                 : items.name.toLowerCase().includes(search.toLowerCase())
             )
             .map((items, index) => (
-              <div key={index} container>
+              <div key={index}>
                 <Cards items={items} />
               </div>
             ))
         )}
-        {/* Display a message for no characters found based on search */}
 
+        {/* Display a message for no characters found based on search */}
         {charactersFiltered.length > 0 && // If there are characters after filters
           search.trim() !== "" && // If search is not empty
           charactersFiltered.every(
@@ -380,8 +368,6 @@ const Charactercards = () => {
             </div>
           )}
       </div>
-
-      
     </div>
   );
 };

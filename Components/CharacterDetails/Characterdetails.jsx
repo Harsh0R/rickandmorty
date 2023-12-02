@@ -10,6 +10,7 @@ const characterdetails = ({ index }) => {
   const [loading, setLoading] = useState(true);
   const [origin, setOrigin] = useState({});
   const [episode, setEpisode] = useState([]);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -22,7 +23,6 @@ const characterdetails = ({ index }) => {
         const data1 = data.results[charNo - 1];
         const urlForCurrLoca = data1.location.url;
         const urlForOriginLoca = data1.origin.url;
-
         const CurrlocationData = await axios.get(urlForCurrLoca);
         const CurrdataLoca = CurrlocationData.data;
         const OriginlocationData = await axios.get(urlForOriginLoca);
@@ -36,9 +36,6 @@ const characterdetails = ({ index }) => {
 
         const episodeData = data1.episode.map((url) => axios.get(url));
         const epData = await Promise.all(episodeData);
-        // console.log("EpData - -=-= ", epData);
-
-        // Process the data or log as needed
         const episodeDetails = epData.map((response) => response.data);
         console.log("Episode Data:", episodeDetails);
         setEpisode(episodeDetails);
@@ -48,8 +45,8 @@ const characterdetails = ({ index }) => {
         setLoading(false)
       }
     };
-    fetchData(); // Call the async function
-  }, []); // Empty dependency array to run the effect only once
+    fetchData(); 
+  }, []); 
 
   if (loading) {
     return (
@@ -61,6 +58,8 @@ const characterdetails = ({ index }) => {
   
   return (
     <div className={Style.container}>
+
+      {/* character info */}
       <div className={Style.characterinfo}>
         <div className={Style.heading}>
           <div className={Style.heading}>Character's Information</div>
@@ -81,6 +80,7 @@ const characterdetails = ({ index }) => {
         </div>
       </div>
 
+      {/* Origin and current location details */}
       <div className={Style.characterLocainfo}>
         <label>
           <div className={Style.heading}>
@@ -117,6 +117,7 @@ const characterdetails = ({ index }) => {
         </label>
       </div>
 
+      {/* Name of the Episodes the character is featured in */}
       <div className={Style.characterEpinfo}>
         <label className={Style.label}>
           <div className={Style.heading}>
