@@ -30,6 +30,7 @@ export async function getAllEpisodeName() {
     throw error;
   }
 }
+
 export async function getAllEpisode() {
   try {
     let currentPage = 1;
@@ -56,6 +57,7 @@ export async function getAllEpisode() {
     throw error;
   }
 }
+
 export async function getAllLocations() {
   try {
     let currentPage = 1;

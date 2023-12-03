@@ -57,6 +57,23 @@
     margin-top: 20px;
     height: 450px;
     overflow-y: scroll;
+    /* scrollbar-width: thin;  */
+    scrollbar-color: rgb(27, 33, 49) rgb(31, 21, 21); 
+
+    
+}
+.episodes::-webkit-scrollbar {
+    width: 12px;
+}
+
+.episodes::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255);
+    border-radius: 6px;
+}
+
+.episodes::-webkit-scrollbar-track {
+    border-radius: 6px;
+    background-color: rgb(31, 21, 21);
 }
 
 .line{

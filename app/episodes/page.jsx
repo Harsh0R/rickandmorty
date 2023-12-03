@@ -5,9 +5,10 @@ import { getAllDataFromApi, getAllEpisode } from "@/Components/demo/page";
 import { useEffect, useState } from "react";
 import CardsForEpisodes from "@/Components/CardsForEpisodes/CardsForEpisodes";
 import Link from "next/link";
+import Image from "next/image";
 import LoadingPage from "@/Components/LoadingPage/LoadingPage";
 
-const page = () => {
+const Page = () => {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [episodes, setEpisodes] = useState([]);
@@ -72,7 +73,7 @@ const page = () => {
               : items.name.toLowerCase().includes(search.toLowerCase());
           })
           .map((items) => (
-            <div className={Style.container}>
+            <div key={items.id} className={Style.container}>
               <CardsForEpisodes items={items} />
               <button
                 className={Style.charBtn}
@@ -96,13 +97,15 @@ const page = () => {
                 character.episode.includes(selectedEpisodes.url)
               )
               .map((character) => (
-                <Link href={`/characters/${character.id}`}>
+                <Link href={`/characters/${character.id}`} key={character.id}>
                   <li key={character.id}>
                     <div>
-                      <img
+                      <Image
                         className={Style.imgOfChars}
                         src={character.image}
                         alt={character.name}
+                        width={50}
+                        height={50}
                       />
                     </div>
                     <div>
@@ -121,4 +124,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

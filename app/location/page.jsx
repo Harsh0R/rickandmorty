@@ -5,9 +5,10 @@ import { useEffect, useState } from "react";
 import { getAllDataFromApi, getAllLocations } from "@/Components/demo/page";
 import CardsForLocations from "@/Components/CardsForLocations/CardsForLocations";
 import Link from "next/link";
+import Image from "next/image";
 import LoadingPage from "@/Components/LoadingPage/LoadingPage";
 
-const page = () => {
+const Page = () => {
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [location, setLocation] = useState([]);
@@ -18,20 +19,17 @@ const page = () => {
   // Fetching data from API
   useEffect(() => {
     const getData = async () => {
-
       try {
         const locs = await getAllLocations();
-      setLocation(locs);
+        setLocation(locs);
 
-      const charData = await getAllDataFromApi();
-      setCharacters(charData);
-      setLoading(false)
+        const charData = await getAllDataFromApi();
+        setCharacters(charData);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data in location Page :", error);
         setLoading(false); // Set loading to false in case of an error
       }
-
-      
     };
     getData();
   }, []);
@@ -75,14 +73,18 @@ const page = () => {
               : items.name.toLowerCase().includes(search.toLowerCase());
           })
           .map((items) => (
-            <div className={Style.container}>
+            <div key={items.id} className={Style.container}>
               <CardsForLocations items={items} />
-              <button className={Style.charBtn} onClick={() => openSidebar(items)}>Show characters related to  location</button>
+              <button
+                className={Style.charBtn}
+                onClick={() => openSidebar(items)}
+              >
+                Show characters related to location
+              </button>
             </div>
           ))}
       </div>
 
-    
       {open && selectedLocation && (
         <div className={Style.sidebar}>
           <h2 className={Style.HeadInSide}>
@@ -94,13 +96,15 @@ const page = () => {
                 character.location.name.includes(selectedLocation.name)
               )
               .map((character) => (
-                <Link href={`/characters/${character.id}`}>
+                <Link href={`/characters/${character.id}`} key={character.id}>
                   <li key={character.id}>
                     <div>
-                      <img
+                      <Image
                         className={Style.imgOfChars}
                         src={character.image}
                         alt={character.name}
+                        width={50}
+                        height={50}
                       />
                     </div>
                     <div>
@@ -110,13 +114,13 @@ const page = () => {
                 </Link>
               ))}
           </ul>
-          <button className={Style.closeBtn} onClick={closeSidebar}>Close Sidebar</button>
+          <button className={Style.closeBtn} onClick={closeSidebar}>
+            Close Sidebar
+          </button>
         </div>
       )}
-
-      
     </div>
   );
 };
 
-export default page;
+export default Page;

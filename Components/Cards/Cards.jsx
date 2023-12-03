@@ -2,13 +2,15 @@
 import React from "react";
 import Style from "./Cards.module.css";
 import Link from "next/link";
+import Image from "next/image";
+import images from "../../img/index"
 import { useState, useEffect } from "react";
 
 const Cards = ({ items }) => {
   if (!items) {
     return (
       <div className={Style.container}>
-        {/* <img src={items.image} /> */}
+        <Image src={images.logo} width={100} height={100}/>
         <div className={Style.detail}>
           <div className={Style.section}>
             <div className={Style.nameSec}>
@@ -27,7 +29,7 @@ const Cards = ({ items }) => {
   return (
     <div>
       <div className={Style.container}>
-        <img src={items.image} />
+        <Image src={items.image} width={300} height={300} alt="char img.."/>
         <div className={Style.detail}>
           <div className={Style.section}>
             <div className={Style.nameSec}>

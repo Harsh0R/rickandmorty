@@ -3,6 +3,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Style from "./CharacterDetails.module.css";
 import axios from "axios";
+import Image from "next/image";
 import LoadingPage from "../LoadingPage/LoadingPage";
 const characterdetails = ({ index }) => {
   const [characters, setCharacters] = useState();
@@ -10,7 +11,7 @@ const characterdetails = ({ index }) => {
   const [loading, setLoading] = useState(true);
   const [origin, setOrigin] = useState({});
   const [episode, setEpisode] = useState([]);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,14 +40,14 @@ const characterdetails = ({ index }) => {
         const episodeDetails = epData.map((response) => response.data);
         console.log("Episode Data:", episodeDetails);
         setEpisode(episodeDetails);
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
         console.log("error in charDetail Page = " + error);
-        setLoading(false)
+        setLoading(false);
       }
     };
-    fetchData(); 
-  }, []); 
+    fetchData();
+  }, []);
 
   if (loading) {
     return (
@@ -55,16 +56,20 @@ const characterdetails = ({ index }) => {
       </div>
     );
   }
-  
+
   return (
     <div className={Style.container}>
-
       {/* character info */}
       <div className={Style.characterinfo}>
         <div className={Style.heading}>
           <div className={Style.heading}>Character's Information</div>
         </div>
-          <img src={characters.image} alt={characters.name} />
+        <Image
+          src={characters.image}
+          alt={characters.name}
+          width={265}
+          height={265}
+        />
         <div>
           <label className={Style.label}>
             <br />
@@ -123,12 +128,14 @@ const characterdetails = ({ index }) => {
           <div className={Style.heading}>
             Episodes the character is featured : ({episode.length})
           </div>
-          <div className={Style.episodes}>
-            {episode.map((i) => (
-              <div className={Style.episodeitem} key={i.id}>
-                {i.id} - {i.name}
-              </div>
-            ))}
+          <div className={Style.scrollbarstyling}>
+            <div className={Style.episodes}>
+              {episode.map((i) => (
+                <div className={Style.episodeitem} key={i.id}>
+                  {i.id} - {i.name}
+                </div>
+              ))}
+            </div>
           </div>
         </label>
       </div>
