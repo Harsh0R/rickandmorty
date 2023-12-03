@@ -10,7 +10,7 @@ import {
   getAllType,
   getAllEpisodeName,
   getAllDataFromApi,
-} from "@/Components/demo/page"; // Importing data-fetching functions
+} from "@/Components/Context/page"; // Importing data-fetching functions
 import Cards from "../Cards/Cards";
 import LoadingPage from "../LoadingPage/LoadingPage";
 

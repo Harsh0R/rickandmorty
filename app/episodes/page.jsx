@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Style from "./page.module.css";
-import { getAllDataFromApi, getAllEpisode } from "@/Components/demo/page";
+import { getAllDataFromApi, getAllEpisode } from "@/Components/Context/page";
 import { useEffect, useState } from "react";
 import CardsForEpisodes from "@/Components/CardsForEpisodes/CardsForEpisodes";
 import Link from "next/link";

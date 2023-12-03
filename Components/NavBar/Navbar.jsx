@@ -31,7 +31,8 @@ const Navbar = () => {
 
         <div>
           <div className={Style.icon} onClick={openMenu}>
-            <span className={Style.toggle}>☰</span>
+            ☰
+            {/* <span className={Style.toggle}>☰</span> */}
           </div>
         </div>
 
@@ -89,8 +90,8 @@ const Navbar = () => {
                 Contact us
               </Link>
             </li>
-            <li className={activeMenu === "/#" ? Style.active : ""}>
-              <Link href="/#" onClick={() => setActiveMenu("/#")}>
+            <li className={activeMenu === "/##" ? Style.active : ""}>
+              <Link href="/#" onClick={() => setActiveMenu("/##")}>
                 About us
               </Link>
             </li>

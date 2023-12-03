@@ -2,7 +2,7 @@
 import React from "react";
 import Style from "./page.module.css";
 import { useEffect, useState } from "react";
-import { getAllDataFromApi, getAllLocations } from "@/Components/demo/page";
+import { getAllDataFromApi, getAllLocations } from "@/Components/Context/page";
 import CardsForLocations from "@/Components/CardsForLocations/CardsForLocations";
 import Link from "next/link";
 import Image from "next/image";
