@@ -32,7 +32,6 @@ const Navbar = () => {
         <div>
           <div className={Style.icon} onClick={openMenu}>
             ☰
-            {/* <span className={Style.toggle}>☰</span> */}
           </div>
         </div>
 
@@ -53,13 +52,13 @@ const Navbar = () => {
                 Episodes
               </Link>
             </li>
-            <li className={activeMenu === "/#" ? Style.active : ""}>
-              <Link href="/#" onClick={() => setActiveMenu("/#")}>
+            <li className={activeMenu === "/#2" ? Style.active : ""}>
+              <Link href="/#" onClick={() => setActiveMenu("/#2")}>
                 Contact us
               </Link>
             </li>
-            <li className={activeMenu === "/##" ? Style.active : ""}>
-              <Link href="/#" onClick={() => setActiveMenu("/##")}>
+            <li className={activeMenu === "/##1" ? Style.active : ""}>
+              <Link href="/#" onClick={() => setActiveMenu("/##1")}>
                 About us
               </Link>
             </li>
@@ -85,13 +84,13 @@ const Navbar = () => {
                 Episodes
               </Link>
             </li>
-            <li className={activeMenu === "/#" ? Style.active : ""}>
-              <Link href="/#" onClick={() => setActiveMenu("/#")}>
+            <li className={activeMenu === "/#2" ? Style.active : ""}>
+              <Link href="/#" onClick={() => setActiveMenu("/#2")}>
                 Contact us
               </Link>
             </li>
-            <li className={activeMenu === "/##" ? Style.active : ""}>
-              <Link href="/#" onClick={() => setActiveMenu("/##")}>
+            <li className={activeMenu === "/##1" ? Style.active : ""}>
+              <Link href="/#" onClick={() => setActiveMenu("/##1")}>
                 About us
               </Link>
             </li>
