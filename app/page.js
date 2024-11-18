@@ -4,23 +4,22 @@ import preventZoom from "./utils/preventZoom";
 import { useEffect } from "react";
 export default function Home() {
   useEffect(() => {
-    const preventPinchZoom = (e) => {
-      if (e.touches.length > 1) {
+    const preventPinch = (e) => {
+      if (e.scale !== 1) {
         e.preventDefault();
       }
     };
 
-    document.addEventListener("touchstart", preventPinchZoom, {
-      passive: false,
-    });
+    document.addEventListener("gesturestart", preventPinch);
+    document.addEventListener("gesturechange", preventPinch);
 
     return () => {
-      document.removeEventListener("touchstart", preventPinchZoom);
+      document.removeEventListener("gesturestart", preventPinch);
+      document.removeEventListener("gesturechange", preventPinch);
     };
   }, []);
-
   return (
-    <div style={{ touchAction: "manipulation" }}>
+    <div style={{ touchAction: 'none'}}>
       <Charactercards />
     </div>
   );
