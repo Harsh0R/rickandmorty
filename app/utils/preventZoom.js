@@ -1,5 +1,3 @@
-import Hammer from "hammerjs";
-
 export default function preventZoom() {
   document.addEventListener("gesturestart", function (e) {
     e.preventDefault();
@@ -17,10 +15,5 @@ export default function preventZoom() {
     e.preventDefault();
     document.body.style.zoom = 0.99;
     document.body.style.transform = scale("0.99");
-  });
-  const ham = new Hammer(document.body);
-  ham.on("pinch", function (e) {
-    alert("pinch");
-    e.preventDefault();
   });
 }
