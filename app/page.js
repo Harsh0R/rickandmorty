@@ -1,31 +1,20 @@
 "use client";
 import Charactercards from "@/Components/CharacterCards/Charactercards";
-import preventZoom from "./utils/preventZoom";
 import { useEffect } from "react";
+import Hammer from "hammerjs";
 export default function Home() {
   useEffect(() => {
-    // Prevent pinch-to-zoom
-    const preventPinch = (e) => {
-      if (e.touches.length > 1) {
-        e.preventDefault();
-      }
-    };
-    // Prevent double-tap zoom
-    let lastTouchEnd = 0;
-    const preventDoubleTapZoom = (e) => {
-      const now = Date.now();
-      if (now - lastTouchEnd <= 300) {
-        e.preventDefault();
-      }
-      lastTouchEnd = now;
-    };
-    document.addEventListener("touchmove", preventPinch, { passive: false });
-    document.addEventListener("touchend", preventDoubleTapZoom);
+    const ham = new Hammer(document.body);
+    ham.on("pinch", function (e) {
+      e.preventDefault();
+    });
+
+    // Clean up when the component unmounts
     return () => {
-      document.removeEventListener("touchmove", preventPinch);
-      document.removeEventListener("touchend", preventDoubleTapZoom);
+      ham.destroy();
     };
   }, []);
+
   return (
     <div>
       <Charactercards />
