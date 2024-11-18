@@ -8,6 +8,7 @@
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 255, 255, 255;
 }
+html,
 body {
   touch-action: none;
   overflow: hidden; /* Optional: Prevent scroll if needed */
@@ -25,7 +26,6 @@ body {
   -webkit-user-select: none;
   -webkit-touch-callout: none;
 }
-html,
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
