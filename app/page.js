@@ -6,7 +6,7 @@ import Hammer from "hammerjs";
 export default function Home() {
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const ham = new Hammer(window.document.body);
+      const ham = new Hammer(document.body);
       ham.on("pinch", function (e) {
         e.preventDefault();
       });
