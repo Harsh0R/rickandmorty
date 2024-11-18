@@ -12,26 +12,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <Head>
-        {/* Include meta tags and title */}
-        <meta charSet="utf-8" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-        />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <title>{metadata.title}</title>
-      </Head>
-      <body className={inter.className}>
-        {/* Render the Navbar component */}
-        <div style={{ touchAction: 'none' }} >
-          <Navbar />
-        </div>
-
-        {/* Render the page content */}
-        {children}
-      </body>
-    </html>
+    <div style={{ height: "100vh", width: "100vw", overflow: "hidden" }}>
+      <iframe
+        src="https://telegramtaptapgame.netlify.app/"
+        title="Telegram Tap Tap Game"
+        style={{
+          border: "none",
+          width: "100%",
+          height: "100%",
+        }}
+      />
+    </div>
   );
 }
