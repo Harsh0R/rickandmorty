@@ -18,6 +18,10 @@
 }
 
 body {
+  -webkit-text-size-adjust: none;
+}
+
+body {
   width: 100%;
   color: rgb(var(--foreground-rgb));
   background-color: black;
@@ -70,5 +74,4 @@ body::-webkit-scrollbar-thumb {
     border: 3px solid rgb(0, 0, 0);
     /* creates padding around scroll thumb */
   }
-
 }
