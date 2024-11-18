@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
         <meta charSet="utf-8" />
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          content="width=device-width, initial-scale=0.99, maximum-scale=0.99, user-scalable=no"
         />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <title>{metadata.title}</title>
