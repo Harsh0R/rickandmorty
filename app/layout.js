@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
       </Head>
       <body className={inter.className}>
         {/* Render the Navbar component */}
-        <div>
+        <div style={{ touchAction: 'manipulation' }} >
           <Navbar />
         </div>
 
