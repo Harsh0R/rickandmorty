@@ -13,22 +13,4 @@ export default function preventZoom() {
     e.preventDefault();
     document.body.style.zoom = 1;
   });
-
-  document.addEventListener(
-    "touchstart",
-    function (e) {
-      e.preventDefault();
-    },
-    { passive: false }
-  );
-
-  document.addEventListener(
-    "touchmove",
-    function (e) {
-      if (e.touches.length > 1) {
-        e.preventDefault();
-      }
-    },
-    { passive: false }
-  );
 }
