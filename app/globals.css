@@ -11,10 +11,12 @@
 
 html {
   -webkit-text-size-adjust: none;
-  touch-action: manipulation;
   touch-action: pan-y;
 }
-
+body {
+  touch-action: manipulation;
+  overflow: hidden; /* Optional: prevent unintended scrolling */
+}
 body {
   -webkit-user-select: none;
   -webkit-touch-callout: none;
