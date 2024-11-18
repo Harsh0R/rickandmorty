@@ -9,6 +9,16 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+html {
+  -webkit-text-size-adjust: none;
+  touch-action: pan-y;
+}
+
+body {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
