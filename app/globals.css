@@ -11,7 +11,6 @@
 html,
 body {
   touch-action: none;
-  overflow: hidden; /* Optional: Prevent scroll if needed */
 }
 
 html {
