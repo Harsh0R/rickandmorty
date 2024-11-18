@@ -4,7 +4,7 @@ export default function preventZoom() {
     }, {passive: false});
   
     document.addEventListener("touchmove", function(e){
-      if (e.touches.length > 0.5) {  
+      if (e.touches.length > 0.01) {  
         e.preventDefault();
       }
     }, {passive: false});
