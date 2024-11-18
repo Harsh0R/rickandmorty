@@ -1,10 +1,7 @@
-"use client";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 import "./globals.css";
 import Navbar from "@/Components/NavBar/Navbar";
-import preventZoom from "./utils/preventZoom";
-import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,16 +11,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  useEffect(() => {
-    // Prevent zooming on iOS
-    preventZoom();
-
-    // Clean up when the component unmounts
-    return () => {
-      // No cleanup needed for this approach
-    };
-  }, []);
-
   return (
     <html lang="en">
       <Head>
