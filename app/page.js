@@ -4,12 +4,26 @@ import preventZoom from "./utils/preventZoom";
 import { useEffect } from "react";
 export default function Home() {
   useEffect(() => {
-    // Prevent zooming on iOS
-    preventZoom();
-
-    // Clean up when the component unmounts
+    // Prevent pinch-to-zoom
+    const preventPinch = (e) => {
+      if (e.touches.length > 1) {
+        e.preventDefault();
+      }
+    };
+    // Prevent double-tap zoom
+    let lastTouchEnd = 0;
+    const preventDoubleTapZoom = (e) => {
+      const now = Date.now();
+      if (now - lastTouchEnd <= 300) {
+        e.preventDefault();
+      }
+      lastTouchEnd = now;
+    };
+    document.addEventListener("touchmove", preventPinch, { passive: false });
+    document.addEventListener("touchend", preventDoubleTapZoom);
     return () => {
-      // No cleanup needed for this approach
+      document.removeEventListener("touchmove", preventPinch);
+      document.removeEventListener("touchend", preventDoubleTapZoom);
     };
   }, []);
   return (
