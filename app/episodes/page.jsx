@@ -7,8 +7,39 @@ import CardsForEpisodes from "@/Components/CardsForEpisodes/CardsForEpisodes";
 import Link from "next/link";
 import Image from "next/image";
 import LoadingPage from "@/Components/LoadingPage/LoadingPage";
+import preventZoom from "../utils/preventZoom";
 
 const Page = () => {
+
+
+  useEffect(() => {
+    document.addEventListener(
+      "touchmove",
+      function (event) {
+        if (event.scale !== 1) {
+          event.preventDefault();
+        }
+      },
+      false
+    );
+    var lastTouchEnd = 0;
+    document.addEventListener(
+      "touchend",
+      function (event) {
+        var now = new Date().getTime();
+        if (now - lastTouchEnd <= 300) {
+          event.preventDefault();
+        }
+        lastTouchEnd = now;
+      },
+      false
+    );
+
+    preventZoom();
+  }, []);
+
+
+
   const [characters, setCharacters] = useState([]);
   const [loading, setLoading] = useState(true);
   const [episodes, setEpisodes] = useState([]);
