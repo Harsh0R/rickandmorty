@@ -1,8 +1,10 @@
+"use client";
 import { Inter } from "next/font/google";
 import Head from "next/head";
 import "./globals.css";
 import Navbar from "@/Components/NavBar/Navbar";
 import preventZoom from "./utils/preventZoom";
+import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
