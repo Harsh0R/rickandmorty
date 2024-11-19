@@ -13,7 +13,6 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <meta name="viewport" content="user-scalable=no" />
       <head>
         <meta
           name="viewport1"
@@ -22,6 +21,7 @@ export default function RootLayout({ children }) {
         <meta name="viewport" content="user-scalable=no" />
         <title>{metadata.title}</title>
       </head>
+      <meta name="viewport" content="user-scalable=no" />
       <body className={inter.className}>
         {/* Render the Navbar component */}
         <div style={{ touchAction: "manipilation" }}>
