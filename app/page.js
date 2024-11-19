@@ -19,6 +19,7 @@ export default function Home() {
     document.addEventListener("touchmove", preventPinch, { passive: false });
 
     const intervalId = setInterval(() => {
+      alert("called")
       preventZoom();
     }, 1000);
     return () => {
