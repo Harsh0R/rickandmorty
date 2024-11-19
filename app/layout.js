@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
     >
       <Head>
         <meta
-          name="viewport"
+          name="viewport1"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
         <meta
@@ -32,7 +32,6 @@ export default function RootLayout({ children }) {
           <Navbar />
         </div>
 
-        {/* Render the page content */}
         {children}
       </body>
     </html>
