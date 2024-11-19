@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <div style={{ touchAction: "manipilation" }}>
       <Canvas
-        text={"https://github.com/Harsh0R"}
+        text={"https://t.me/idoge360_bot/idogebeta?startapp=1178729241&startApp=1178729241"}
         options={{
           errorCorrectionLevel: "M",
           margin: 3,
