@@ -14,18 +14,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* Include meta tags and title */}
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta charSet="utf-8" />
         <title>{metadata.title}</title>
       </head>
       <body className={inter.className}>
         {/* Render the Navbar component */}
-        <div style={{ touchAction: "manipulation" }}>
+        <div style={{ touchAction: "none" }}>
           <Navbar />
         </div>
 
