@@ -8,17 +8,23 @@ export default function Home() {
       if (e.scale !== 1) {
         e.preventDefault();
       }
+      if (e.touches.length > 1) {
+        e.preventDefault();
+      }
     };
 
     document.addEventListener("gesturestart", preventPinch);
     document.addEventListener("gesturechange", preventPinch);
+    document.addEventListener("touchmove", preventPinch, { passive: false });
+    document.addEventListener("touchend", preventDoubleTapZoom);
 
     preventZoom();
     return () => {
       document.removeEventListener("gesturestart", preventPinch);
       document.removeEventListener("gesturechange", preventPinch);
+      document.removeEventListener("touchmove", preventPinch);
+      document.removeEventListener("touchend", preventDoubleTapZoom);
     };
-
   }, []);
   return (
     <div style={{ touchAction: "manipilation" }}>
