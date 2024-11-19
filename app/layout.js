@@ -20,6 +20,10 @@ export default function RootLayout({ children }) {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
+        <meta
+          name="viewport"
+          content="user-scalable=no"
+        />
         <title>{metadata.title}</title>
       </Head>
       <body className={inter.className}>
