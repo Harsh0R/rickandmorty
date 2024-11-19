@@ -21,6 +21,7 @@ export default function RootLayout({ children }) {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
         <title>{metadata.title}</title>
+        <meta name="imagetoolbar" content="no"/>
         <meta name="viewport" content="user-scalable=no" />
       </head>
       <body className={inter.className}>
