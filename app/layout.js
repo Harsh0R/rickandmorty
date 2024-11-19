@@ -12,18 +12,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html
-      lang="en"
-    >
+    <html lang="en">
+      <meta name="viewport" content="user-scalable=no" />
       <head>
         <meta
           name="viewport1"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
-        <meta
-          name="viewport"
-          content="user-scalable=no"
-        />
+        <meta name="viewport" content="user-scalable=no" />
         <title>{metadata.title}</title>
       </head>
       <body className={inter.className}>
