@@ -7,8 +7,6 @@
     flex-wrap: wrap;
     justify-content: space-around;
     margin: 1rem; 
-    overflow-y: scroll;
-    height: 1000px;
 }
 .loadingPage{
     margin-top: 5rem;
