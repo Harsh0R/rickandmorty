@@ -11,7 +11,6 @@
 html,
 body {
   touch-action: none;
-  overflow-y: scroll;
 }
 
 @media (prefers-color-scheme: dark) {

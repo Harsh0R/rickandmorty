@@ -337,7 +337,9 @@ const Charactercards = () => {
       </div>
 
       {/* characters cards */}
+
       <div className={Style.containerForCharacters}>
+
         {charactersFiltered.length === 0 ? (
           <div className={Style.noCharactersMessage}>
             <Cards />
