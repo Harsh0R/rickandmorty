@@ -20,6 +20,7 @@ export default function RootLayout({ children }) {
         />
         <meta name="viewport2" content="user-scalable=no" />
         <title>{metadata.title}</title>
+        <meta name="viewport2" content="user-scalable=no" />
       </head>
       <body className={inter.className}>
         <div style={{ touchAction: "manipilation" }}>
