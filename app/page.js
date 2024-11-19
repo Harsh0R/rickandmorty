@@ -21,7 +21,7 @@ export default function Home() {
 
   }, []);
   return (
-    <div style={{ touchAction: "manipulation" }}>
+    <div style={{ touchAction: "none" }}>
       <Charactercards />
     </div>
   );
