@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
     >
-      <Head>
+      <head>
         <meta
           name="viewport1"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
           content="user-scalable=no"
         />
         <title>{metadata.title}</title>
-      </Head>
+      </head>
       <body className={inter.className}>
         {/* Render the Navbar component */}
         <div style={{ touchAction: "manipilation" }}>
