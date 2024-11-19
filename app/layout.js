@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <div style={{ touchAction: "manipilation" }}>
-          <Navbar />
+          {/* <Navbar /> */}
         </div>
         {children}
       </body>
