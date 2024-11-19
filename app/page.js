@@ -18,11 +18,7 @@ export default function Home() {
     document.addEventListener("touchmove", preventPinch, { passive: false });
 
     preventZoom();
-    return () => {
-      document.removeEventListener("gesturestart", preventPinch);
-      document.removeEventListener("gesturechange", preventPinch);
-      document.removeEventListener("touchmove", preventPinch);
-    };
+
   }, []);
   return (
     <div style={{ touchAction: "manipilation" }}>
