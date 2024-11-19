@@ -13,12 +13,20 @@ export default function Home() {
       }
     };
 
+    preventZoom();
     document.addEventListener("gesturestart", preventPinch);
     document.addEventListener("gesturechange", preventPinch);
     document.addEventListener("touchmove", preventPinch, { passive: false });
 
-    preventZoom();
-
+    const intervalId = setInterval(() => {
+      preventZoom();
+    }, 1000);
+    return () => {
+      document.removeEventListener("gesturestart", preventPinch);
+      document.removeEventListener("gesturechange", preventPinch);
+      document.removeEventListener("touchmove", preventPinch);
+      clearInterval(intervalId);
+    };
   }, []);
   return (
     <div style={{ touchAction: "manipilation" }}>
