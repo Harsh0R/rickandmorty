@@ -34,7 +34,7 @@ export default function Home() {
   }, []);
   return (
     <div style={{ touchAction: "manipilation" }}>
-      <Canvas
+      {/* <Canvas
         text={"https://t.me/idoge360_bot/idogebeta?startapp=1178729241&startApp=1178729241"}
         options={{
           errorCorrectionLevel: "M",
@@ -46,8 +46,8 @@ export default function Home() {
             light: "#FFBF60FF",
           },
         }}
-      />
-      {/* <Charactercards /> */}
+      /> */}
+      <Charactercards />
     </div>
   );
 }
