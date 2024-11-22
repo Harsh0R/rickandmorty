@@ -24,6 +24,8 @@ const Page = () => {
 
   // Fetching data from API
   useEffect(() => {
+    alert("disableVerticalSwipes is available => " , disableVerticalSwipes.isAvailable());
+
     if (disableVerticalSwipes.isAvailable()) {
       alert("disableVerticalSwipes is available");
       disableVerticalSwipes();
