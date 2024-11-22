@@ -1,65 +1,62 @@
 .container {
-    padding: 1rem; /* Add padding for better spacing on small screens */
-    color: rgb(250, 235, 215);
-    display: flex;
-    overflow: hidden;
-    width: 100%; /* Use a relative width for responsiveness */
-    max-width: 600px; /* Set a maximum width for larger screens */
-    background: rgb(27, 33, 49);
-    border-radius: 0.5rem;
-    margin:10px; /* Center the container and adjust margin */
-    height: auto; /* Allow the height to adjust based on content */
-    border: 3px solid rgb(31, 21, 21);
-    box-sizing: border-box; /* Include padding and border in the total width */
-
+  padding: 1rem; /* Add padding for better spacing on small screens */
+  color: rgb(250, 235, 215);
+  display: flex;
+  overflow: hidden;
+  width: 100%; /* Use a relative width for responsiveness */
+  max-width: 600px; /* Set a maximum width for larger screens */
+  background: rgb(27, 33, 49);
+  border-radius: 0.5rem;
+  margin: 10px; /* Center the container and adjust margin */
+  height: auto; /* Allow the height to adjust based on content */
+  border: 3px solid rgb(31, 21, 21);
+  box-sizing: border-box; /* Include padding and border in the total width */
+}
+@media screen and (max-width: 550px) {
+  .container {
+    flex-direction: column;
     background-color: transparent;
     height: 300px;
     margin: 0 auto;
-    transition: none .25s ease;
-    -webkit-transition: none .25s ease;
+    transition: none 0.25s ease;
+    -webkit-transition: none 0.25s ease;
     -webkit-transition: none;
-
+  }
 }
-@media screen and (max-width: 550px) {
-    .container {
-        flex-direction: column; /* Stack items in a column on small screens */
-    }
-}
-
 
 .detail {
-    flex: 3 1 0%;
-    position: relative;
-    padding: 0.75rem;
-    color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: column;
+  flex: 3 1 0%;
+  position: relative;
+  padding: 0.75rem;
+  color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
 }
 
 .section {
-    flex: 1 1 0%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  flex: 1 1 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .nameSec {
-    font-size: 20px;
-    font-weight: 900;
+  font-size: 20px;
+  font-weight: 900;
 }
 .loca {
-    font-size: 13px;
-    color: rgb(158, 158, 158);
+  font-size: 13px;
+  color: rgb(158, 158, 158);
 }
 .detailBtn {
-    border-radius: 5px;
-    font-weight: 500;
-    text-align: center;
-    background-color: #dd1515ca;
-    margin-top: 10px; /* Add some spacing between the button and other content */
+  border-radius: 5px;
+  font-weight: 500;
+  text-align: center;
+  background-color: #dd1515ca;
+  margin-top: 10px; /* Add some spacing between the button and other content */
 }
 @media screen and (max-width: 550px) {
-    .detailBtn {
-        width: 100%; /* Make the button full width on small screens */
-    }
+  .detailBtn {
+    width: 100%; /* Make the button full width on small screens */
+  }
 }
