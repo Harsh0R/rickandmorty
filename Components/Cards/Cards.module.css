@@ -10,7 +10,8 @@
     margin:10px; /* Center the container and adjust margin */
     height: auto; /* Allow the height to adjust based on content */
     border: 3px solid rgb(31, 21, 21);
-    box-sizing: border-box; /* Include padding and border in the total width */
+    box-sizing: border-box; 
+    touch-action: none;
 }
 @media screen and (max-width: 550px) {
     .container {
