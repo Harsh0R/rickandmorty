@@ -1,5 +1,4 @@
 .container {
-    margin-top: 100px;
     padding: 1rem; /* Add padding for better spacing on small screens */
     color: rgb(250, 235, 215);
     display: flex;
@@ -11,15 +10,13 @@
     margin:10px; /* Center the container and adjust margin */
     height: auto; /* Allow the height to adjust based on content */
     border: 3px solid rgb(31, 21, 21);
-    box-sizing: border-box;
-    transform: scale(1) translateZ(0px); 
-    user-select: none;
-    touch-action: none !important;
+    box-sizing: border-box; /* Include padding and border in the total width */
+    overflow: auto; /* Allows scrolling */
+    -webkit-overflow-scrolling: touch;
 }
 @media screen and (max-width: 550px) {
     .container {
         flex-direction: column; /* Stack items in a column on small screens */
-        touch-action: none;
     }
 }
 

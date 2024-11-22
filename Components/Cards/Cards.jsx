@@ -5,12 +5,13 @@ import Link from "next/link";
 import Image from "next/image";
 import images from "../../img/index"
 import { useState, useEffect } from "react";
+import { WebApp, enableVerticalSwipes } from "@telegram-apps/sdk";
 
 const Cards = ({ items }) => {
   if (!items) {
     return (
       <div className={Style.container}>
-        <Image src={images.logo} width={100} height={100}/>
+        <Image src={images.logo} width={100} height={100} />
         <div className={Style.detail}>
           <div className={Style.section}>
             <div className={Style.nameSec}>
@@ -23,13 +24,15 @@ const Cards = ({ items }) => {
   }
   const [toggle, setToggle] = useState(true);
   useEffect(() => {
+    WebApp.expand(); // Ensure app expands correctly
+    enableVerticalSwipes();
     setToggle(items.id);
   }, []);
 
   return (
     <div>
       <div className={Style.container}>
-        <Image src={items.image} width={300} height={300} alt="char img.."/>
+        <Image src={items.image} width={300} height={300} alt="char img.." />
         <div className={Style.detail}>
           <div className={Style.section}>
             <div className={Style.nameSec}>
