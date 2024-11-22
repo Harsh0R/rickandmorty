@@ -147,7 +147,7 @@ const Charactercards = () => {
   return (
     <div className={Style.container1}>
       {/* Filter Section */}
-      <div className={Style.filters}>
+      {/* <div className={Style.filters}>
         <div className={Style.filterHeading}>🔦 Filters Character By :</div>
         <div className={Style.filterBtns}>
           <div className={Style.dropdown}>
@@ -322,10 +322,10 @@ const Charactercards = () => {
             Clear All
           </button>
         </div>
-      </div>
+      </div> */}
 
       {/* Search section */}
-      <div className={Style.searchbar}>
+      {/* <div className={Style.searchbar}>
         <input
           className="sreachInput"
           type="search"
@@ -334,7 +334,7 @@ const Charactercards = () => {
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search Character By Name... 🔎"
         />
-      </div>
+      </div> */}
 
       {/* characters cards */}
 
