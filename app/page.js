@@ -5,7 +5,12 @@ import Charactercards from "@/Components/CharacterCards/Charactercards";
 export default function Home() {
   const { Canvas } = useQRCode();
 
-  
+  if (disableVerticalSwipes.isAvailable()) {
+    alert("disableVerticalSwipes is available");
+    disableVerticalSwipes();
+    isVerticalSwipesEnabled();
+  }
+
 
   return (
     <div>

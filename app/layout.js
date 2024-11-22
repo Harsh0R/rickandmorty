@@ -13,8 +13,6 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
 
-  alert("msg => ",disableVerticalSwipes.isAvailable());
-  
   if (disableVerticalSwipes.isAvailable()) {
     alert("disableVerticalSwipes is available");
     disableVerticalSwipes();
