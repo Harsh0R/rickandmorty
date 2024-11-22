@@ -28,7 +28,7 @@ const Cards = ({ items }) => {
 
   return (
     <div>
-      <button className={Style.container}>
+      <div className={Style.container}>
         <Image src={items.image} width={300} height={300} alt="char img.."/>
         <div className={Style.detail}>
           <div className={Style.section}>
@@ -54,7 +54,7 @@ const Cards = ({ items }) => {
             </div>
           </Link>
         </div>
-      </button>
+      </div>
     </div>
   );
 };
