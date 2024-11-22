@@ -14,7 +14,7 @@ export default function Home() {
 
 
   return (
-    <div>
+    <div style="transform: scale(1) translateZ(0px);opacity: 1;">
       {/* <Canvas
         text={"https://t.me/idoge360_bot/idogebeta?startapp=1178729241&startApp=1178729241"}
         options={{
