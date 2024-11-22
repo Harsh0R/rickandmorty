@@ -18,7 +18,7 @@ const Charactercards = () => {
   // State variables for managing characters and filters
   const [characters, setCharacters] = useState([]);
   const [charactersFiltered, setCharactersFiltered] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("Rick sanchez");
   const [loading, setLoading] = useState(true);
   const [status, setStatus] = useState([]);
   const [location, setLocation] = useState([]);
