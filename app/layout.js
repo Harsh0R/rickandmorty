@@ -1,10 +1,5 @@
 import "./globals.css";
 import Navbar from "@/Components/NavBar/Navbar";
-import {
-  disableVerticalSwipes,
-  isVerticalSwipesEnabled,
-} from '@telegram-apps/sdk';
-
 
 export const metadata = {
   title: "Rick And Morty",
@@ -12,12 +7,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-
-  if (disableVerticalSwipes.isAvailable()) {
-    alert("disableVerticalSwipes is available");
-    disableVerticalSwipes();
-    isVerticalSwipesEnabled();
-  }
 
   return (
     <html lang="en">

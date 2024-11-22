@@ -11,6 +11,14 @@
     height: auto; /* Allow the height to adjust based on content */
     border: 3px solid rgb(31, 21, 21);
     box-sizing: border-box; /* Include padding and border in the total width */
+
+    background-color: transparent;
+    height: 300px;
+    margin: 0 auto;
+    transition: none .25s ease;
+    -webkit-transition: none .25s ease;
+    -webkit-transition: none;
+
 }
 @media screen and (max-width: 550px) {
     .container {

@@ -7,8 +7,7 @@ import CardsForLocations from "@/Components/CardsForLocations/CardsForLocations"
 import Link from "next/link";
 import Image from "next/image";
 import LoadingPage from "@/Components/LoadingPage/LoadingPage";
-import preventZoom from "../utils/preventZoom";
-import { disableVerticalSwipes, isVerticalSwipesEnabled } from "@telegram-apps/sdk";
+
 
 const Page = () => {
 
@@ -24,11 +23,6 @@ const Page = () => {
 
   // Fetching data from API
   useEffect(() => {
-    if (disableVerticalSwipes.isAvailable()) {
-      alert("disableVerticalSwipes is available");
-      disableVerticalSwipes();
-      isVerticalSwipesEnabled();
-    }
 
     const getData = async () => {
       try {
