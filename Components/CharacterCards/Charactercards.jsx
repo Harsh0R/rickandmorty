@@ -353,7 +353,11 @@ const Charactercards = () => {
             )
             .map((items, index) => (
               <div key={index}>
-                <Cards items={items} />
+                {
+                  items.id == 1 ? (<>
+                    <Cards items={items} />
+                  </>) : (<></>)
+                }
               </div>
             ))
         )}
