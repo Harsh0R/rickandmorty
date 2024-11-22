@@ -1,22 +1,14 @@
 "use client";
 import { useQRCode } from "next-qrcode";
 import Charactercards from "@/Components/CharacterCards/Charactercards";
-import {
-  disableVerticalSwipes,
-  isVerticalSwipesEnabled,
-} from '@telegram-apps/sdk';
 
 export default function Home() {
   const { Canvas } = useQRCode();
 
   
-  if (disableVerticalSwipes.isAvailable()) {
-    disableVerticalSwipes();
-    isVerticalSwipesEnabled();
-  }
- 
+
   return (
-    <div style={{ touchAction: "manipilation" }}>
+    <div>
       {/* <Canvas
         text={"https://t.me/idoge360_bot/idogebeta?startapp=1178729241&startApp=1178729241"}
         options={{
