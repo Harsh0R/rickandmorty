@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import images from "../../img/index"
 import { useState, useEffect } from "react";
-import { WebApp, enableVerticalSwipes } from "@telegram-apps/sdk";
+import { enableVerticalSwipes } from "@telegram-apps/sdk";
 
 const Cards = ({ items }) => {
   if (!items) {
@@ -24,7 +24,6 @@ const Cards = ({ items }) => {
   }
   const [toggle, setToggle] = useState(true);
   useEffect(() => {
-    WebApp.expand(); // Ensure app expands correctly
     enableVerticalSwipes();
     setToggle(items.id);
   }, []);
