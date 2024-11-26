@@ -5,7 +5,6 @@ import Charactercards from "@/Components/CharacterCards/Charactercards";
 export default function Home() {
   const { Canvas } = useQRCode();
 
-
   return (
     <div>
       {/* <Canvas
@@ -21,7 +20,14 @@ export default function Home() {
           },
         }}
       /> */}
-      <Charactercards />
+      <a href="" rel="nofollow">
+        <img
+          alt="banner"
+          src="https://landings-cdn.adsterratech.com/referralBanners/gif/120x60_adsterra_reff.gif"
+        />
+      </a>
+
+      {/* <Charactercards /> */}
     </div>
   );
 }
