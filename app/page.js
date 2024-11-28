@@ -20,14 +20,14 @@ export default function Home() {
           },
         }}
       /> */}
-      <a href="" rel="nofollow">
+      {/* <a href="" rel="nofollow">
         <img
           alt="banner"
           src="https://landings-cdn.adsterratech.com/referralBanners/gif/120x60_adsterra_reff.gif"
         />
-      </a>
+      </a> */}
 
-      {/* <Charactercards /> */}
+      <Charactercards />
     </div>
   );
 }
